@@ -59,6 +59,12 @@ class SiteController extends \frontend\components\Controller
         return $this->render('rule');
     }
 
+    public function actionShop()
+    {
+        $this->view->title = '商城';
+        return $this->render('shop');
+    }
+
     public function actionHint()
     {
         $this->view->title = wechatInfo()->ring_name . '_提示页面';

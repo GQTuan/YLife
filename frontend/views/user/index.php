@@ -93,3 +93,20 @@
         <div class="myContent">
 
         </div>
+
+
+<div class="myButtom">
+        <div class="holdlist-wrap">
+            <ul class="clear-fl footer-nav">
+                <li><a href="/site/shop">
+                    商城
+                </a></li>
+                <li class=""><a href="/site/index">
+                    交易
+                </a></li>
+                <li class="active"><a href="/user/index">
+                    我的
+                </a></li>
+            </ul>
+        </div>
+    </div>

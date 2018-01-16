@@ -10,7 +10,7 @@
  body{
     position: fixed;
     left: 0;
-    
+
  }
   @keyframes sponde{
     0%{width:6px;height:6px;opacity:1;}
@@ -255,6 +255,22 @@
                 <?= $this->render('_orderList', compact('orders')) ?>
                 </ul>
             </div>
+        </div>
+    </div>
+
+    <div class="myButtom">
+        <div class="holdlist-wrap">
+            <ul class="clear-fl footer-nav">
+                <li><a href="/site/shop">
+                    商城
+                </a></li>
+                <li class="active"><a href="/site/index">
+                    交易
+                </a></li>
+                <li class=""><a href="/user/index">
+                    我的
+                </a></li>
+            </ul>
         </div>
     </div>
 <input type="hidden" id="productId" value="<?= $product->id ?>">

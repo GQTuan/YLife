@@ -111,14 +111,65 @@
         border-radius: 4px;
     }
 </style>
+
+
+<style type="text/css">
+    .header {
+        padding: 0px 5px;
+        text-align: center;
+        position: relative;
+        height: 45px;
+        line-height: 45px;
+        color: #fff;
+        font-size: 18px;
+        color: #666;
+        border-bottom: 1px solid #ddd;
+        background: #fff;
+    }
+    .header a {
+        display: inline-block;
+        position: absolute;
+        top: 1px;
+        left: 5px;
+        color: #666;
+    }
+    .back_arrow{
+        position: relative;
+    }
+    .back_arrow:after,.back_arrow:before{
+        content: "";
+        position: absolute;
+        width: 12px;
+        border-top: 2px solid #666;
+        transform-origin: left;
+        -webkit-transform-origin: left;
+        top: 20px;
+        left: 10px;
+    }
+    .back_arrow:after{
+        transform:rotate(45deg);
+        -webkit-transform:rotate(45deg);
+    }
+    .back_arrow:before{
+        transform:rotate(-45deg);
+        -webkit-transform:rotate(-45deg);
+    }
+</style>
+
+
+<div class="header">
+    <a href="javascript:history.go(-1)"> <span class="back_arrow"></span> </a>
+    充值
+</div>
+
 <div class="container " style="padding:0;">
-    <div class="row pad_10 ">
+    <!-- <div class="row pad_10 ">
         <div class="col-xs-3">
             <a href="<?= url(['user/index']) ?>" class="back-icon"><i class="iconfont" style="color:#333;"></i></a>
         </div>
         <div class="col-xs-6 back-head" style="color:#333;font-weight:bold;">充值</div>
         <div class="col-xs-3"></div>
-    </div>
+    </div> -->
     <div class="row" style="padding: 0 15px;">
         <div class="col-xs-12 font_16 tx_text" style="font-size:13px;color: #828284;line-height: 30px;">
             可用资金余额:
