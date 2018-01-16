@@ -10,6 +10,7 @@
  body{
     position: fixed;
     left: 0;
+    
  }
   @keyframes sponde{
     0%{width:6px;height:6px;opacity:1;}
