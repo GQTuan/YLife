@@ -25,6 +25,76 @@
     /*text-align: right;*/
   }
 </style>
+
+<style type="text/css">
+    .header {
+        padding: 0px 5px;
+        text-align: center;
+        position: relative;
+        height: 45px;
+        line-height: 45px;
+        color: #fff;
+        font-size: 18px;
+        color: #666;
+        border-bottom: 1px solid #ddd;
+        background: #fff;
+    }
+    .header a {
+        display: inline-block;
+        position: absolute;
+        top: 1px;
+        left: 5px;
+        color: #666;
+    }
+    .back_arrow{
+        position: relative;
+    }
+    .back_arrow:after,.back_arrow:before{
+        content: "";
+        position: absolute;
+        width: 12px;
+        border-top: 2px solid #666;
+        transform-origin: left;
+        -webkit-transform-origin: left;
+        top: 20px;
+        left: 10px;
+    }
+    .back_arrow:after{
+        transform:rotate(45deg);
+        -webkit-transform:rotate(45deg);
+    }
+    .back_arrow:before{
+        transform:rotate(-45deg);
+        -webkit-transform:rotate(-45deg);
+    }
+    .load_app {
+        padding: 0 10%;
+        margin-top: 20px;
+    }
+    .load_app a {
+        border: 2px solid #F15A5C;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 14px;
+        color: #F15A5C;
+    }
+    .inp-font {
+      width: 100%;
+    }
+    .lf {
+        float: left;
+    }
+    .rt {
+        float: right;
+    }
+</style>
+
+
+<div style="background:transparent" class="header">
+    <a href="javascript:history.go(-1)"> <span class="back_arrow"></span> </a>
+    注册
+</div>
+
 <?php $form = self::beginForm(['showLabel' => false]) ?>
    <div class="wrap-content">
         <!-- <div class="form-listbox clearfix">
@@ -143,6 +213,12 @@
     <div class="infotips">你的信息已提交,正在审核<br/>请耐心等待审核</div>
 </div>
 
+
+
+<div class="clear_fl load_app">
+    <a href="/site/wxload?type=ios" class="lf">苹果app下载</a>
+    <a href="/site/wxload?type=android" class="rt">安卓app下载</a>
+</div>
 <!-- 遮罩层结束 -->
 
 <?php self::endForm() ?>
