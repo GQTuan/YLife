@@ -47,7 +47,6 @@ class ManagerController extends \frontend\components\Controller
     public function actionIndex()
     {
         $this->view->title = '经纪人';  
-
         if (u()->is_manager == User::IS_MANAGER_NO) {
             return $this->redirect(['manager/register']);
         }
