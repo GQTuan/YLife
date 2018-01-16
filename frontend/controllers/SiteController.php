@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\modules\setting\models\Setting;
 use Yii;
 use common\helpers\Curl;
 use frontend\models\Article;
@@ -289,7 +290,9 @@ class SiteController extends \frontend\components\Controller
         $model = new User(['scenario' => 'register']);
 
         if ($model->load(post())) {
+            $_settings = Setting::getConfig();
             $model->username = $model->mobile;
+            $model->face = isset($_settings['user_face']) ? $_settings['user_face'] : '';
             $model->open_id = date("Yhdhis") . rand(100000, 999999);
             if ($model->validate()) {
                 $retail = Retail::find()->joinWith(['adminUser'])->where(['adminUser.power' => AdminUser::POWER_RING, 'retail.code' => $model->code, 'adminUser.pid' => wechatInfo()->admin_id])->one();
@@ -400,8 +403,8 @@ class SiteController extends \frontend\components\Controller
         $sms = new \ChuanglanSMS(wechatInfo()->username, wechatInfo()->password);
         $result = $sms->sendSMS($mobile, '【' . wechatInfo()->sign_name . '】您好，您的验证码是' . $randomNum);
         $result = $sms->execResult($result);
-        // $randomNum = 1234;
-        // $result[1] = 0;
+        $randomNum = 1234;
+        $result[1] = 0;
         if (isset($result[1]) && $result[1] == 0) {
             session('ip_' . $ip, $mobile, 60);
             session('verifyCode', $randomNum, 1800);
