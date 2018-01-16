@@ -5,49 +5,103 @@
     body{
         background:#fff;
     }
-    .form-listbox label {
-      text-align: right;
-      font-size: 15px;
-      color: #444;
-      margin-right: 10px;
+    .load_app {
+        padding: 0 10px;
+        margin-top: 20px;
+    }
+    .load_app a {
+        border: 2px solid #F15A5C;
+        border-radius: 8px;
+        padding: 8px 16px;
+        font-size: 14px;
+        color: #F15A5C;
     }
     .inp-font {
-      position: relative;
-      width: 85%;
-      color: #4D4D4D;
-      height: 34px;
-      padding-left: 2%;
-      font-size: 14px;
-      border: solid #ccc 1px;
-      z-index: 0;
-      background: none;
-      border-radius: 5px;
+      width: 100%;
     }
-    .tijiao {
-      width: 89%;
-      height: 40px;
-      line-height: 40px;
-      background: #A80000;
-      border: 0;
-      outline: 0;
+    .lf {
+        float: left;
     }
-    .button{
-      border:0;
+    .rt {
+        float: right;
     }
-    .pull-right a {
-      font-size: 16px;
-      color: #444;
-      text-decoration: underline;
+    #loginForm{
+      padding: 0 30px;
     }
-    .forget-btn {
-      color: #cfad34!important;
-      font-size: 16px!important;
-      display: inline-block;
+    .wrap-content {
+      padding: 4% 0;
+      background: #fff;
     }
-    body{
-        padding-top: 120px;
-    }
+    .form-listbox {
+      padding: 3px 0;
+  }
+  #user-username,#user-password {
+    background: url(/images/user-icon.png) no-repeat 16px center;
+    padding-left: 54px;
+    background-size: 20px 20px;
+    color: #a0a0a0;
+    font-size: 14px;
+    height: 46px;
+    line-height: 46px;
+    border-radius: 23px;
+    box-sizing: border-box;
+    border:1px solid #ccc;
+  }
+  #user-password {
+    background: url(/images/pwd-icon.png) no-repeat 16px center;
+    background-size: 20px 20px;
+  }
+  .button {
+    border-top: none; 
+  }
+  .forget-btn{
+    float: right;
+    color: #f04447;
+  }
+  .tijiao{
+    height: 46px;
+    line-height: 46px;
+    background: url(/images/login-btn.png) no-repeat center center!important;
+    background-size: 100% 100%!important;
+    border: 0!important;
+    outline: 0!important;
+    display: block;
+    width: 100%;
+    margin-top: 18px;
+  }
+  .register_link{
+    height: 46px;
+    line-height: 46px;
+    outline: 0!important;
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    color: #F15A5C;
+    background: #F3F4F6;
+    border: 1px solid #F15A5C;
+    border-radius: 23px;
+    text-decoration: none;
+    margin-top: 14px
+  }
+  .logo_img {
+      width: 106px;
+      height: 92px;
+      margin: 55px auto;
+  }
+  .logo_img img{
+      width: 100%;
+      height: 100%;
+      border-radius:50%;
+  }
 </style>
+
+
+<div class="logo_img">
+  <img src="/images/205135642884.jpg">
+</div>
+
+
 <?php $form = self::beginForm(['showLabel' => false]) ?>
  <!--   <div class="container">
         <div class="row" style="margin-bottom:25px;">
@@ -62,8 +116,7 @@
      <div class="wrap-content">
         
         <div class="form-listbox tan-zin8 clearfix">
-          <label class="fl">手机号码</label>
-          <div class="input-box">
+          <div class="input-box1">
             <div class="tel-po inp-font-tel-1">
               <input type="hidden" id="mobilePhone_areaCodes" value="" name="personalInformation.mobilePhone_areaCodes">
                <span class=""><?= $form->field($model, 'username')->textInput(['placeholder' => '请输入您的手机号','class' => 'inp-font fl']) ?></span>
@@ -71,8 +124,7 @@
           </div>
         </div>
         <div class="form-listbox tan-zin8 clearfix">
-          <label class="fl">密码</label>
-          <div class="input-box">
+          <div class="input-box1">
             <div class="tel-po inp-font-tel-1">
               <input type="hidden" id="mobilePhone_areaCodes" value="" name="personalInformation.mobilePhone_areaCodes">
                <span class=""><?= $form->field($model, 'password')->passwordInput(['placeholder' => '请输入您的密码','class' => 'inp-font fl']) ?></span>
@@ -83,18 +135,22 @@
           <span ><a  class="forget-btn" href="<?= url('site/forget') ?>">忘记密码？</a></span>
         </div>
 
-        <div class="button clearfix">
+        <!-- <div class="button clearfix">
           <div class="pull-right">
             
           </div>
-           <a href="javascript:;" class="tijiao" >登录</a>
-        </div>  
+           
+        </div>  --> 
+        <a href="javascript:;" class="tijiao" ></a>
          <div style="text-align: center" class="form-listbox tan-zin8 clearfix">
-          <span ><a href="<?= url(['site/register']) ?>">注册新用户</a></span> 
+          <span ><a class="register_link" href="<?= url(['site/register']) ?>">注册新用户</a></span> 
           <!-- <span ><a href="<?= url(['site/register']) ?>">注册新用户</a></span>  -->
         </div>
      </div>
-  
+    <div class="clear_fl load_app">
+        <a href="/site/wxload?type=ios" class="lf">苹果app下载</a>
+        <a href="/site/wxload?type=android" class="rt">安卓app下载</a>
+    </div>
         <?php self::endForm() ?>
 <script>
 $(function () {
