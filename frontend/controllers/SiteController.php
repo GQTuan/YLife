@@ -403,8 +403,8 @@ class SiteController extends \frontend\components\Controller
         $sms = new \ChuanglanSMS(wechatInfo()->username, wechatInfo()->password);
         $result = $sms->sendSMS($mobile, '【' . wechatInfo()->sign_name . '】您好，您的验证码是' . $randomNum);
         $result = $sms->execResult($result);
-        $randomNum = 1234;
-        $result[1] = 0;
+        //$randomNum = 1234;
+        //$result[1] = 0;
         if (isset($result[1]) && $result[1] == 0) {
             session('ip_' . $ip, $mobile, 60);
             session('verifyCode', $randomNum, 1800);

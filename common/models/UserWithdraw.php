@@ -35,8 +35,9 @@ class UserWithdraw extends \common\components\ARModel
             'user_id' => '用户ID',
             'amount' => '出金金额',
             'account_id' => '出金账号ID',
+            'type' => '类型',
             'op_state' => '操作状态：1待审核，2已操作，-1不通过',
-            'isgive' => '是否返还',
+            //'isgive' => '是否返还',
             'created_at' => '申请时间',
             'updated_at' => '审核时间',
         ];
@@ -61,8 +62,9 @@ class UserWithdraw extends \common\components\ARModel
                 'userWithdraw.user_id' => $this->user_id,
                 'userWithdraw.amount' => $this->amount,
                 'userWithdraw.account_id' => $this->account_id,
+                'userWithdraw.type' => $this->type,
                 'userWithdraw.op_state' => $this->op_state,
-                'userWithdraw.isgive' => $this->isgive,
+                //'userWithdraw.isgive' => $this->isgive,
             ])
             ->andFilterWhere(['like', 'userWithdraw.out_sn', $this->out_sn])
             ->andFilterWhere(['like', 'userWithdraw.created_at', $this->created_at])
