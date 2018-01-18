@@ -246,16 +246,30 @@ $(function() {
     });
 
     $("#chargeAmount").blur(function(){
-        var amount = $(this).val();
-        if( isNaN(amount) ){
-            $(this).val(0);
-            return false;
-        }
-        $('#amount').val(amount);
-
-
         var val = $(this).val();
         var rate = <?= $rate ?>;    //后台给定
+
+        $(".btn_money.on").removeClass("on");
+        var amount = $(this).val();
+        var _this = $(this);
+        if( isNaN(amount) ){
+            $.alert("充值金额必须为数字", function(){
+                _this.val(10);
+                $('#amount').val(10);
+                val = 10;
+                $(".real_count").html(val - Math.ceil( val * rate ));
+            });
+        }
+        if(amount < 10){
+            $.alert("充值金额不小于10元", function(){
+                _this.val(10);
+                $('#amount').val(10);
+                val = 10;
+                $(".real_count").html(val - Math.ceil( val * rate ));
+            });
+        }
+
+        $('#amount').val(amount);
         $(".real_count").html(val - Math.ceil( val * rate ));
     });
 
