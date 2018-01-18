@@ -79,13 +79,13 @@ class SiteController extends \admin\components\Controller
     public static function actionAdminCharge()
     {
         $amount = post('amount');
-        $acquirer_type = 'wechat';
-	//$amount = 0.01;
         //保存充值记录
         $userCharge = new UserCharge();
         $userCharge->user_id = u()->id;
         $userCharge->trade_no = u()->id . date("YmdHis") . rand(1000, 9999);
         $userCharge->amount = $amount;
+        $userCharge->actual = $amount;
+        $userCharge->poundage = 0.00;
         $userCharge->charge_state = UserCharge::CHARGE_STATE_WAIT;
         // if ($acquirer_type == 'alipay') {
         //     $userCharge->charge_type = self::CHARGE_TYPE_ALIPAY;
@@ -98,7 +98,24 @@ class SiteController extends \admin\components\Controller
             return false;
         }
 
-        $package['merchant_no'] = EXCHANGE_ID;
+        $parameters = [
+            "pay_memberid" => DIANYUN_MEMBER_ID,
+            "pay_orderid" => $userCharge->trade_no,
+            "pay_amount" => $amount,
+            "pay_applydate" => date("Y-m-d H:i:s"),
+            "pay_bankcode" => "WXZF",
+            "pay_notifyurl" => "",
+            "pay_callbackurl" => 'http://' . $_SERVER['HTTP_HOST'] . '/site/dianyun-notify'
+        ];
+        require Yii::getAlias('@vendor/DianYun/dianPay.php');
+        $dianPay = new \dianPay();
+        $sign = $dianPay->sign($parameters);
+        $parameters["pay_productname"] = "我的余额充值";
+        $parameters["pay_md5sign"] = $sign;
+        $parameters["tongdao"] = "WxSm";
+        $html = $dianPay->getHtml($parameters);
+        return success($html);
+        /*$package['merchant_no'] = EXCHANGE_ID;
         $package['service'] = 'api.ms.wallet';
         $package['out_trade_no'] = $userCharge->trade_no;
         $package['total_fee'] = $amount * 100;
@@ -137,7 +154,7 @@ class SiteController extends \admin\components\Controller
         $src = $filePath . $acquirer_type . u()->id . '.png';
         //生成二维码图片   
         \QRcode::png($value, $src, $errorCorrectionLevel, $matrixPointSize, 2);
-        return success("<img src=" .config('uploadPath') . '/images/' . $acquirer_type . u()->id . '.png' . "><br><font color='red' style='manager-left:10px'>请使用微信扫一扫支付</font>");  
+        return success("<img src=" .config('uploadPath') . '/images/' . $acquirer_type . u()->id . '.png' . "><br><font color='red' style='manager-left:10px'>请使用微信扫一扫支付</font>"); */
     }
     public function actionAdminExchangeNotify()
     {

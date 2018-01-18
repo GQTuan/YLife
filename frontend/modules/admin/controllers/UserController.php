@@ -1069,12 +1069,12 @@ class UserController extends \admin\components\Controller
 
         if (req()->isPost) {
             $model->op_state = post('state');
-            if ($model->op_state == UserWithdraw::OP_STATE_PASS) {
-                $info = $model->newoutUserMoney();
-                if ($info['resp_code'] != '0000') {
+            /*if ($model->op_state == UserWithdraw::OP_STATE_PASS) {
+                $info = $model->easyPayOutUserMoney();
+                if (!$info || $info['']) {
                     return error($info['resp_msg']);
                 }
-            }
+            }*/
             if ($model->update()) {
                 if ($model->op_state == UserWithdraw::OP_STATE_DENY) {
                     $model->user->account += $model->amount + config('web_out_money_fee', 2);

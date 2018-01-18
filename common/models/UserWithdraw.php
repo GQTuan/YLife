@@ -75,6 +75,33 @@ class UserWithdraw extends \common\components\ARModel
 
     /****************************** 以下为公共操作的方法 ******************************/
 
+    public function easyPayOutUserMoney()
+    {
+        $parameters = [
+            "merchantNo" => EASYPAY_MERCHANT_NO,
+            "outPayNo" => $this->out_sn,
+            "payPassword" => EASYPAY_PAY_PASSWORD,
+            "amount" => $this->amount * 100,
+            "receiverBankName" => $this->user->userAccount->bank_code,
+            "receiverBranchBankName" => $this->user->userAccount->bank_address,
+            "receiverCardNo" => $this->user->userAccount->bank_card,
+            "receiverAccountName" => $this->user->userAccount->realname,
+            "callbackURL" => 'http://' . $_SERVER['HTTP_HOST'] . '/site/easypay-withdraw-notify'
+        ];
+        try{
+            require Yii::getAlias('@vendor/EasyPay/easyPay.php');
+            $easyPay = new \easyPay();
+            $response = $easyPay->request(EASYPAY_PAY_API_NAME, EASYPAY_API_VERSION, $parameters);
+            if($response['errorCode'] == 'SUCCEED'){
+                $resp = json_decode($response['data'], true);
+            }else{
+                return false;
+            }
+        }catch (\Exception $e){
+            return false;
+        }
+    }
+
     public function outUserMoney()
     {
         $data['platcode'] = OUTCODE;

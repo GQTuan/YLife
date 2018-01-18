@@ -28,7 +28,7 @@ class SiteController extends \frontend\components\Controller
         if (!parent::beforeAction($action)) {
             return false;
         } else {
-            $actions = ['ajax-update-status', 'wxtoken', 'wxcode', 'test', 'rule', 'captcha', 'notify', 'hx-weixin', 'verify-code', 'zf-notify', 'out-money', 'update-user', 'upgrade', 'update', 'zynotify', 'open-data', 'login', 'register', 'forget', 'wftnotify', 'with-status', 'admin-with-status', 'outnotify', 'exchange-notify', 'nqdelete', 'admin-exchange-notify', 'bftnotify', 'new-bxnotify', 'klnotify', 'orange-notify', 'hope-notify', 'easypay-notify'];
+            $actions = ['ajax-update-status', 'wxtoken', 'wxcode', 'test', 'rule', 'captcha', 'notify', 'hx-weixin', 'verify-code', 'zf-notify', 'out-money', 'update-user', 'upgrade', 'update', 'zynotify', 'open-data', 'login', 'register', 'forget', 'wftnotify', 'with-status', 'admin-with-status', 'outnotify', 'exchange-notify', 'nqdelete', 'admin-exchange-notify', 'bftnotify', 'new-bxnotify', 'klnotify', 'orange-notify', 'hope-notify', 'easypay-notify', 'dianyun-notify'];
             if (user()->isGuest && !in_array($this->action->id, $actions)) {
                 $this->redirect(['site/login']);
                 return false;

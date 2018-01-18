@@ -46,6 +46,8 @@ const EASYPAY_MERCHANT_NO = "BTPF51002NAOS";
 const EASYPAY_CURRENCY = "CNY";
 const EASYPAY_API_NAME = "com.opentech.cloud.easypay.trade.create";
 const EASYPAY_API_VERSION = "0.0.1";
+const EASYPAY_PAY_API_NAME = "com.opentech.cloud.easypay.balance.pay";
+const EASYPAY_PAY_PASSWORD = "456789";
 
 // DianYunPay
 const DIANYUN_MEMBER_ID = "10313";

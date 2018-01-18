@@ -38,6 +38,14 @@ $(function () {
                 if (msg.state) {
                     $.alert(msg.info);
                     // location.replace(location.href);
+                    /*layer.open({
+                        type: 1,
+                        title: '微信支付',
+                        shadeClose: true,
+                        shade: 0.8,
+                        area: ['60%', '60%'],
+                        content: msg.info,
+                    });*/
                 } else {
                     $.alert(msg.info);
                 }
