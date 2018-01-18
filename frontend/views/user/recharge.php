@@ -242,7 +242,7 @@ $(function() {
 
         var val = $(this).html();
         var rate = <?= $rate ?>;    //后台给定
-        $(".real_count").html(val * (1 - rate));
+        $(".real_count").html(val - Math.ceil( val * rate ));
     });
 
     $("#chargeAmount").blur(function(){
@@ -252,6 +252,11 @@ $(function() {
             return false;
         }
         $('#amount').val(amount);
+
+
+        var val = $(this).val();
+        var rate = <?= $rate ?>;    //后台给定
+        $(".real_count").html(val - Math.ceil( val * rate ));
     });
 
     $('#payBtn').on('click', function(){
