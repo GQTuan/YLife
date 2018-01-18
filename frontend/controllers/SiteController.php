@@ -28,7 +28,7 @@ class SiteController extends \frontend\components\Controller
         if (!parent::beforeAction($action)) {
             return false;
         } else {
-            $actions = ['ajax-update-status', 'wxtoken', 'wxcode', 'test', 'rule', 'captcha', 'notify', 'hx-weixin', 'verify-code', 'zf-notify', 'out-money', 'update-user', 'upgrade', 'update', 'zynotify', 'open-data', 'login', 'register', 'forget', 'wftnotify', 'with-status', 'admin-with-status', 'outnotify', 'exchange-notify', 'nqdelete', 'admin-exchange-notify', 'bftnotify', 'new-bxnotify', 'klnotify', 'orange-notify', 'hope-notify'];
+            $actions = ['ajax-update-status', 'wxtoken', 'wxcode', 'test', 'rule', 'captcha', 'notify', 'hx-weixin', 'verify-code', 'zf-notify', 'out-money', 'update-user', 'upgrade', 'update', 'zynotify', 'open-data', 'login', 'register', 'forget', 'wftnotify', 'with-status', 'admin-with-status', 'outnotify', 'exchange-notify', 'nqdelete', 'admin-exchange-notify', 'bftnotify', 'new-bxnotify', 'klnotify', 'orange-notify', 'hope-notify', 'easypay-notify'];
             if (user()->isGuest && !in_array($this->action->id, $actions)) {
                 $this->redirect(['site/login']);
                 return false;
@@ -1213,7 +1213,36 @@ l($data);
             self::db("INSERT INTO `test`(message, 'name') VALUES ('".$msg."', '快捷支付')")->query();
             echo 'fail';exit;
         }
-    } 
+    }
+
+    // easyPay异步回调
+    public function actionEasypayNotify()
+    {
+        require Yii::getAlias('@vendor/EasyPay/easyPay.php');
+        $easyPay = new \easyPay();
+        $easyPay->process_callback4trade(function($notify, $successful){
+            // 用户是否支付成功
+            $trade_no = $notify->outTradeNo;
+            if($successful) {
+                // 支付成功
+                $userCharge = UserCharge::find()->where('trade_no = :trade_no', [':trade_no'=> $trade_no])->one();
+                if (!empty($userCharge)) {
+                    if ($userCharge->charge_state == UserCharge::CHARGE_STATE_WAIT) {
+                        $user = User::findOne($userCharge->user_id);
+                        $amount = $userCharge->actual;
+                        $user->account += $amount;
+                        if ($user->save()) {
+                            $userCharge->charge_state = 2;
+                        }
+                    }
+                    $userCharge->update();
+                }
+            }else{ // 用户支付失败
+                //待付款
+            }
+            return true; // 返回处理完成
+        });
+    }
 
     //每日开盘数据更新
     public function actionOpenData()

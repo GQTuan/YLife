@@ -21,6 +21,12 @@ class UserCharge extends \common\components\ARModel
     const CHARGE_TYPE_HUAN = 6; //环迅支付
     const CHARGE_TYPE_RWECHART = 7; //融微信支付
     const CHARGE_TYPE_RALIPAY = 8; //融支付宝支付
+    const CHARGE_TYPE_JD = 9; //SCEN京东支付
+    const CHARGE_TYPE_UNION = 10; //SCEN银联扫码支付
+    const CHARGE_TYPE_H5_BANK = 11; //SCEN H5网银支付
+    const CHARGE_TYPE_H5_UNION = 12; //SCEN手机银联支付
+
+    const CHARGE_FEE = 0.02; // 充值手续费率
 
     public function rules()
     {
@@ -40,6 +46,8 @@ class UserCharge extends \common\components\ARModel
             'user_id' => '用户ID',
             'trade_no' => '订单编号',
             'amount' => '充值金额',
+            'actual' => "实际到账",
+            'poundage' => "手续费",
             'charge_type' => '充值方式：1支付宝，2微信',
             'charge_state' => '充值状态：1待付款，2成功，-1失败',
             'created_at' => '充值时间',
@@ -74,6 +82,8 @@ class UserCharge extends \common\components\ARModel
                 'userCharge.id' => $this->id,
                 'userCharge.user_id' => $this->user_id,
                 'userCharge.amount' => $this->amount,
+                //'userCharge.actual' => $this->actual,
+                //'userCharge.poundage' => $this->poundage,
                 'userCharge.charge_type' => $this->charge_type,
                 'userCharge.charge_state' => $this->charge_state,
             ])

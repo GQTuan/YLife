@@ -2,6 +2,7 @@
 
 namespace frontend\models;
 
+use common\modules\setting\models\Setting;
 use Yii;
 use common\helpers\FileHelper;
 
@@ -928,5 +929,86 @@ class UserCharge extends \common\models\UserCharge
             return $arr['credential']; 
         }
         return false;
+    }
+
+    public static function payEasyPay($amount, $type)
+    {
+        $_settings = Setting::getConfig();
+        $fee = isset($_settings['recharge_fee']) ? $_settings['recharge_fee'] / 100 : self::CHARGE_FEE;
+        //$poundage = ceil($amount * $fee);
+        $poundage = $amount * $fee;
+        $actual = $amount - $poundage;
+        $userCharge = new UserCharge();
+        $userCharge->user_id = u()->id;
+        $userCharge->trade_no = u()->id . date("YmdHis") . rand(1000, 9999);
+        $userCharge->amount = $amount;
+        $userCharge->actual = $actual;
+        $userCharge->poundage = $poundage;
+        $userCharge->charge_state = self::CHARGE_STATE_WAIT;
+        if($type == 3){
+            $userCharge->charge_type = self::CHARGE_TYPE_QQ;
+            $payType = "QQ_QRCODE_PAY";
+            $typeText = "qq";
+        }elseif ($type == 4){
+            $userCharge->charge_type = self::CHARGE_TYPE_JD;
+            $payType = "JD_QRCODE_PAY";
+            $typeText = "jd";
+        }elseif ($type == 5){
+            $userCharge->charge_type = self::CHARGE_TYPE_UNION;
+            $payType = "UNION_QRCODE_PAY";
+            $typeText = "union";
+        }elseif ($type == 6){
+            $userCharge->charge_type = self::CHARGE_TYPE_H5_BANK;
+            $payType = "H5_ONLINE_BANK_PAY";
+            $typeText = "h5";
+        }elseif ($type == 7){
+            $userCharge->charge_type = self::CHARGE_TYPE_H5_UNION;
+            $payType = "H5_UNION_PAY";
+            $typeText = "h5union";
+        }else{
+            $userCharge->charge_type = self::CHARGE_TYPE_H5_UNION;
+            $payType = "H5_UNION_PAY";
+            $typeText = "h5union";
+        }
+        if (!$userCharge->save()) {
+            return false;
+        }
+        $parameters = [
+            "merchantNo" => EASYPAY_MERCHANT_NO,
+            "outTradeNo" => $userCharge->trade_no,
+            "currency" => EASYPAY_CURRENCY,
+            "amount" => $amount * 100,
+            "payType" => $payType,
+            "content" => "我的余额充值",
+            //"callbackURL" => url(['site/easypay-notify'], true)
+            "callbackURL" => "http://39.106.214.129/easypay-api-sdk-php/notify.php"
+        ];
+        try{
+            require Yii::getAlias('@vendor/EasyPay/easyPay.php');
+            $easyPay = new \easyPay();
+            $response = $easyPay->request(EASYPAY_API_NAME, EASYPAY_API_VERSION, $parameters);
+            if($response['errorCode'] == 'SUCCEED'){
+                $resp = json_decode($response['data'], true);
+                if(in_array($type, [3,4,5])){
+                    //生成二维码
+                    require Yii::getAlias('@vendor/phpqrcode/phpqrcode.php');
+                    $value = $resp['paymentInfo']; //二维码内容
+                    $errorCorrectionLevel = 'L';//容错级别
+                    $matrixPointSize = 6;//生成图片大小
+                    $filePath = Yii::getAlias('@webroot/' . config('uploadPath') . '/images/');
+                    FileHelper::mkdir($filePath);
+                    $src = $filePath . $typeText . u()->id . '.png';
+                    //生成二维码图片
+                    \QRcode::png($value, $src, $errorCorrectionLevel, $matrixPointSize, 2);
+                    return config('uploadPath') . '/images/' . $typeText . u()->id . '.png';
+                }else{
+                    return $resp['paymentInfo'];
+                }
+            }else{
+                return false;
+            }
+        }catch (\Exception $e){
+            return false;
+        }
     }
 }

@@ -425,7 +425,6 @@ class UserController extends \frontend\components\Controller
     {     
         $this->view->title = '我的账户-充值';
         $user = User::findModel(u()->id);
-        
         return $this->render('recharge', compact('user'));
     }
 
@@ -441,14 +440,33 @@ class UserController extends \frontend\components\Controller
         $this->layout = 'empty';
         $this->view->title = '安全支付';
         $amount = post('amount', '0.01');
-        $type = post('type', 2);
+        $type = post('type', 1);
         // if(u()->id == 100001) {
         //     $src = UserCharge::payOrange($amount);
         //     return $this->render('wechat', compact('src', 'amount'));
         // }
-        switch ($type) {
+        if(in_array($type, [1, 2])){
+            // 点云支付
+        }else{
+            // SCEN支付
+            $src = UserCharge::payEasyPay($amount, $type);
+            if(in_array($type, [3, 4, 5])){
+                // 扫码支付
+                if($type == 3) {
+                    return $this->render('qqpay', compact('src', 'amount'));
+                }else if ($type == 4) {
+                    return $this->render('jdpay', compact('src', 'amount'));
+                }else{
+                    return $this->render('unionpay', compact('src', 'amount'));
+                }
+            }else{
+                // 跳转链接
+                return $this->redirect($src);
+            }
+        }
+        /*switch ($type) {
             case '1':
-            die;
+                // 微信扫码支付
                 $amount = 0.01;
                 $token_id = UserCharge::twftpay($amount, UserCharge::CHARGE_TYPE_BANKWECHART);//微信公众号支付
                 test('https://pay.swiftpass.cn/pay/jspay?token_id='.$token_id.'&showwxtitle=1');
@@ -459,14 +477,31 @@ class UserController extends \frontend\components\Controller
                 }
                 break;
             case '2':
+                // 支付宝扫码
                 $src  = UserCharge::payExchange($amount);//交易所微信支付
-		  return $this->render('wechat', compact('src', 'amount'));
+		        return $this->render('wechat', compact('src', 'amount'));
                 break;
-
+            case '3':
+                // QQ扫码
+                $src  = UserCharge::payExchange($amount);//交易所微信支付
+                return $this->render('wechat', compact('src', 'amount'));
+                break;
             case '4':
+                // 京东扫码
                 $html = UserCharge::payExchange($amount, 'jd');//银行卡快捷支付
-                break;  
-
+                break;
+            case '5':
+                // 银联扫码
+                $html = UserCharge::payExchange($amount, 'jd');//银行卡快捷支付
+                break;
+            case '6':
+                // H5网银支付
+                $html = UserCharge::payExchange($amount, 'jd');//银行卡快捷支付
+                break;
+            case '7':
+                // 手机银联快捷
+                $html = UserCharge::payExchange($amount, 'jd');//银行卡快捷支付
+                break;
             case '6':
                 $src = UserCharge::payExchange($amount);//交易所微信支付
                 break;
@@ -506,13 +541,13 @@ class UserController extends \frontend\components\Controller
                  return $this->render('alipay', compact('src', 'amount'));
                 break;
             case '13':
-                $html = UserCharge::payHope($amount, 'F0');//  希望支付 
+                $html = UserCharge::payHope($amount, 'F0');//  希望支付
                  return $this->render('gzh', compact('html'));
-                break;   
+                break;
             default:
                 return $this->render('zfpay', compact('info'));
                 break;
-        }
+        }*/
     }
 
     public function actionAjaxWxurl()

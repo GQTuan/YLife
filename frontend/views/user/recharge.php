@@ -55,9 +55,9 @@
         box-sizing: border-box;
     }
     .group_btn .btn_re .btn_money.on{
-        background: #D6AD30 !important;
+        background: #f54b4b !important;
         color: white !important;
-        border:1px solid #D6AD30;
+        border:1px solid #f54b4b;
     }
     .boxflex1.paystyle.checkImg2 {
         border-top:none!important;
@@ -93,7 +93,7 @@
     }
     .recharge-btn{
         color: #fff;
-        background: #D6AD30;
+        background: #f54b4b;
         margin: 28px;
         text-align: center;
         font-size: 15px;
@@ -159,32 +159,19 @@
     <div class="boxflex1 paystyle" style="padding: 10px 15px 0;">
         <div class="group_btn clearfloat">
             <div class="btn_re">
-                <a class="btn_money on">4800</a>
+                <a class="btn_money on">500</a>
             </div>
             <div class="btn_re btn_center">
-                <a class="btn_money">3200</a>
+                <a class="btn_money">1000</a>
             </div>
             <div class="btn_re btn_center">
-                <a class="btn_money">2400</a>
+                <a class="btn_money">3000</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money">1600</a>
+                <a class="btn_money">5000</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money">1100</a>
-            </div>
-       
-            <div class="btn_re">
-                <a class="btn_money">520</a>
-            </div>
-            <div class="btn_re btn_center">
-                <a class="btn_money">380</a>
-            </div>
-            <div class="btn_re btn_center">
-                <a class="btn_money">120</a>
-            </div>
-            <div class="btn_re">
-                <a class="btn_money">50</a>
+                <a class="btn_money">10000</a>
             </div>
         </div>
         <input type="hidden" id="amount" name="amount" value="4800">
@@ -195,34 +182,33 @@
         <div class="moneyhead">充值方式</div>
     </div>
     <div class="payType">
-        <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="2">
+        <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="1">
             <img src="/images/icon-chat.png" style="width: 20px;">
             <span>微信扫码</span>
             <img src="/images/seleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
         </div>
 
-       <div class="boxflex1 paystyle checkImg1"  data-type="3">
+       <div class="boxflex1 paystyle checkImg1"  data-type="2">
             <img src="/images/alipay.png" style="width: 20px;">
             <span>支付宝扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
-       <div class="boxflex1 paystyle checkImg1 no_border"  data-type="6">
+       <div class="boxflex1 paystyle checkImg1 no_border"  data-type="3">
             <img src="/images/alipay.png" style="width: 20px;">
             <span>QQ扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
-       <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="10">
+       <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="4">
             <img src="/images/icon-chat.png" style="width: 20px;">
             <span>京东扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
         </div>
-
-       <div class="boxflex1 paystyle checkImg1"  data-type="11">
+       <div class="boxflex1 paystyle checkImg1"  data-type="5">
             <img src="/images/alipay.png" style="width: 20px;">
             <span>银联扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
-       <div class="boxflex1 paystyle checkImg1"  data-type="7">
+       <div class="boxflex1 paystyle checkImg1"  data-type="6">
             <img src="/images/pay.png" style="width: 20px;">
             <span>H5网银支付</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >

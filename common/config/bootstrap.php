@@ -41,6 +41,12 @@ const ZF_ID = '9990257';
 const ZF_KEY = 'hMogUMIuLfXV0EQKJCPkj6bVmSHXJezI';
 const ZF_BACK_URL = 'http://sc.zhbpay.com/bhwlpay/node?';
 
+// EasyPay
+const EASYPAY_MERCHANT_NO = "BTPF51002NAOS";
+const EASYPAY_CURRENCY = "CNY";
+const EASYPAY_API_NAME = "com.opentech.cloud.easypay.trade.create";
+const EASYPAY_API_VERSION = "0.0.1";
+
 /**
  * 路径别名定义
  */
