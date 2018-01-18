@@ -1,258 +1,240 @@
 <?php $this->regCss('iconfont/iconfont.css') ?>
 <?php $this->regCss('mine.css') ?>
+<?php $this->regCss('common.css') ?>
 <style type="text/css">
-    html{
-        height: 100vh;
-        width: 100vw;
-        background: #F4F4F4;
+    body{background:#fff!important;}
+    .header_con{
+        height: 50px;
+        line-height: 50px;
+        background: #999;
+        position: relative;
+        text-align: center;
+        margin-bottom: 5px;
     }
-    body{background:#fff;
-	padding-bottom: 200px;
-}
-    .option-container .btn_re{
-        width: calc((100% - 60px)/3);
-        margin-left: 30px;
-        height: 32px;
-        line-height: 25px;
-        margin-bottom: 16px;
-    }
-    .option-container .btn_re a{
-        color: #fca237;
-        font-size: 15px;
-        border:1px solid #FDC27C;
-    }
-    .option-container .btn_re a.on{
+    .header_con p{
+        font-size: 16px;
         color: #fff;
-        font-size: 15px;
-        border:0;
-        background: #FCA237;
     }
-    .option-container .btn_re:nth-child(3n + 1){
+    .header_con a{
+        width: 25px;
+        height: 20px;
+        position: absolute;
+        left: 20px;
+        top: 15px;
+        z-index: 1000;
+    }
+    .header_con a img{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .selecthe {
+        color: rgb(51, 51, 51);
+        font-size: 12px;
+        line-height: 28px;
+        border-top: none;
+        padding: 5px 15px;
+        margin: 0;
+    }
+    .boxflex1.paystyle {
+        color: #333;
+        border-top: none;
+        border-bottom: none;
+    }
+    .btn_re:nth-child(6){
         margin-left: 0;
     }
-    .boxflex1.paystyle.checkImg3{
-        border:0;
-        background: #fff;
-        /*height: 60px;
-        line-height: 60px;*/
-    }
-    .recharge-btn{
-        /*position: absolute;*/
-        width: 80%;
-        left:5%;
-        /*margin-top: 30px;*/
-        background: #FCA237;
-        margin-bottom: 15px;
-    }
-    .custom{
-        width: 50%;
-    }
-    .boxflex1.paystyle{
-        padding:10px 15px;
-        font-size: 16px;
-    }
-    .boxflex1.paystyle img{
-        /*width: 22px!important;*/
-    }
-    .my-pay-container{
-       /* padding: 15px;*/
-        margin-bottom: 10px;
-    }
-    .my-pay-container>div{
-        
-        padding: 0!important;
-        border:0!important;
-        width: 65%;
-        margin: 0 auto;
-        margin-bottom: 8px;
-        
-    }
-    .group_btn {
-        /*margin-bottom: 8px;*/
-    }
-    .my-pay-container:after{
-        content: "";
-        display: block;
-        clear: both;
-    }
-    .my-pay-container img{
-        width: 100%!important;
-    }
-    .my-pay-container .img2{
-        display: none;
-    }
-    .my-pay-container .active .img2{
-        display: block;
-    }
-    .my-pay-container .active .img1{
-        display: none;
-    }
-    .custom{
-        width: 100%;
-        height: 50px;
-        border-radius: 4px;
-        border:1px solid #D2D2D2;
-        background: #EDEDED;
-        font-size: 16px;
-        color: #FDA237;
-        padding: 0 23px;
+    .group_btn .btn_re a{
+        /*background: rgb(22, 22, 22)!important;*/
+        /*color: #D6AD30!important;*/
+        border:none;
+        font-size: 14px;
+        border:1px solid #999;
         box-sizing: border-box;
     }
-    .custom::-webkit-input-placeholder{
-        font-size: 16px;
-        color: #FDA237;
+    .group_btn .btn_re .btn_money.on{
+        background: #D6AD30 !important;
+        color: white !important;
+        border:1px solid #D6AD30;
     }
-    .recharge-btn-cotnainer{
-        background: #fff;
-        margin-top: 15px;
+    .boxflex1.paystyle.checkImg2 {
+        border-top:none!important;
     }
-    .checkImg3 .img2{
-        border:1px solid #9F9F9F;
-        border-radius: 4px;
+    .payType .boxflex1.paystyle {
+        height: 44px;
+        line-height: 44px;
+        border-bottom: 1px solid #e0e0e0;
+        padding: 0 30px;
     }
-</style>
-
-
-<style type="text/css">
-    .header {
-        padding: 0px 5px;
-        text-align: center;
+    .boxflex1.paystyle.checkImg2{
+        border-top: 1px solid #e0e0e0!important;
+    }
+    .moneyhead {
+        font-size: 12px;
+        height: 50px;
+        line-height: 50px;
+    }
+    .boxflex1.paystyle span+img{
+        width: 22px;
+        height: 22px;
         position: relative;
-        height: 45px;
-        line-height: 45px;
+        top: 14px;
+    }
+    .boxflex1.paystyle img:nth-child(1){
+        width: 26px!important;
+        height: 26px;
+        border-radius: 50%;
+        margin-right: 26px;
+    }
+    .boxflex1.paystyle span{
+        font-size: 14px;
+    }
+    .recharge-btn{
         color: #fff;
-        font-size: 18px;
-        color: #666;
-        border-bottom: 1px solid #ddd;
-        background: #fff;
+        background: #D6AD30;
+        margin: 28px;
+        text-align: center;
+        font-size: 15px;
+        border-radius: 5px;
+        padding: 7px 0;
     }
-    .header a {
-        display: inline-block;
-        position: absolute;
-        top: 1px;
-        left: 5px;
-        color: #666;
+    .field-chargeAmount #chargeAmount {
+        /*background: rgb(22, 22, 22) !important;
+        border-color: rgb(76, 66, 35) !important;*/
+        /*color: white;*/
     }
-    .back_arrow{
-        position: relative;
+    .form-control {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        box-sizing: border-box;
     }
-    .back_arrow:after,.back_arrow:before{
-        content: "";
-        position: absolute;
-        width: 12px;
-        border-top: 2px solid #666;
-        transform-origin: left;
-        -webkit-transform-origin: left;
-        top: 20px;
-        left: 10px;
+    .form-group {
+        margin-bottom: 15px;
     }
-    .back_arrow:after{
-        transform:rotate(45deg);
-        -webkit-transform:rotate(45deg);
+    .boxflex1 {
+         background: transparent; 
     }
-    .back_arrow:before{
-        transform:rotate(-45deg);
-        -webkit-transform:rotate(-45deg);
+    .no_border{
+        border-bottom: 0!important;
+    }
+    .real_count_con{
+        color: #e4393c;
+        font-size: 12px;
+        padding: 0 15px;
+        margin-top: 12px;
     }
 </style>
 
-
-<div class="header">
-    <a href="javascript:history.go(-1)"> <span class="back_arrow"></span> </a>
-    充值
-</div>
-
+<header class="header_con">
+    <a href="javascript:history.go(-1)" class="lf">
+        <img src="/images/call_back.png">
+    </a>
+    <p>充值</p>
+</header>
 <div class="container " style="padding:0;">
-    <!-- <div class="row pad_10 ">
-        <div class="col-xs-3">
-            <a href="<?= url(['user/index']) ?>" class="back-icon"><i class="iconfont" style="color:#333;"></i></a>
-        </div>
-        <div class="col-xs-6 back-head" style="color:#333;font-weight:bold;">充值</div>
-        <div class="col-xs-3"></div>
-    </div> -->
-    <div class="row" style="padding: 0 15px;">
-        <div class="col-xs-12 font_16 tx_text" style="font-size:13px;color: #828284;line-height: 30px;">
-            可用资金余额:
-            <span style="color:#fca237;font-size: 15px;margin-left: 15px;">￥<?= $user->blocked_account<0?$user->account:$user->account - $user->blocked_account ?></span>
-        </div>
+    <p class="selecthe">选择充值面额（元）</p>
+    <div class="col-xs-12">
+        <div style="padding: 0 10px;" class="form-group field-chargeAmount required">
+            <input type="text" id="chargeAmount" class="form-control" placeholder="可输入10-10000的整数金额（元）">
+            <div class="help-block"></div>
+        </div>            
     </div>
-        <!-- <p style="border:0;" class="selecthe">选择充值面额（元）</p> -->
-    
     <?php $form = self::beginForm(['showLabel' => false, 'action' => url(['user/pay']), 'id' => 'payform']) ?>
-    <div class="boxflex1 paystyle" style="padding: 10px 15px 0;border:0;">
-        <div class="group_btn clearfloat option-container">
+    <div class="boxflex1 paystyle" style="padding: 10px 15px 0;">
+        <div class="group_btn clearfloat">
             <div class="btn_re">
-                <a class="btn_money on">100</a>
+                <a class="btn_money on">4800</a>
             </div>
             <div class="btn_re btn_center">
-                <a class="btn_money">500</a>
+                <a class="btn_money">3200</a>
             </div>
             <div class="btn_re btn_center">
-                <a class="btn_money">1000</a>
+                <a class="btn_money">2400</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money">3000</a>
+                <a class="btn_money">1600</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money">5000</a>
+                <a class="btn_money">1100</a>
+            </div>
+       
+            <div class="btn_re">
+                <a class="btn_money">520</a>
+            </div>
+            <div class="btn_re btn_center">
+                <a class="btn_money">380</a>
+            </div>
+            <div class="btn_re btn_center">
+                <a class="btn_money">120</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money">10000</a>
+                <a class="btn_money">50</a>
             </div>
-            <input type="hidden" id="amount" name="amount" value="50">
-            <input type="hidden" id="userId" name="userId" value="<?= get('user_id') ?>">
-            <input type="hidden" id="mobile" name="mobile" value="">
-            <!-- <input type="hidden" id="adminId" name="adminId" value="<?= get('admin_id') ?>"> -->
-            <input type="hidden" id="type" name="type" value="7">
         </div>
+        <input type="hidden" id="amount" name="amount" value="4800">
+        <input type="hidden" id="type" name="type" value="2">
     </div>
-     <div class="boxflex1">
-        <!-- <span style="font-size:12px;color:#828284;margin-right: 50px;">自定义金额</span> -->
-        <input class="custom" style="border:0;font-size: 15px;color:#fca237;outline:0;margin:0 0 10px 0 ;" placeholder="自定义充值金额"/>
-    </div> 
+    <p class="real_count_con">实际到账：<span class="real_count"></span></p>
+    <div class="boxflex1">
+        <div class="moneyhead">充值方式</div>
+    </div>
     <div class="payType">
-        <!-- <div style="height:15px;background:#F4F4F4;"></div>
- -->
-        <div class="my-pay-container">
-            <!--微信扫码-->
-            <div class="boxflex1 paystyle checkImg1"  data-type="2">
-                <img class="img1" src="../images/weipay2.png">
-                <img class="img2" src="../images/weipay1.png">
-            </div>
-            <!--支付宝扫码-->
-            <div class="boxflex1 paystyle checkImg2"  data-type="7">
-                <img class="img1" src="../images/alipay1.png">
-                <img class="img2" src="../images/alipay2.png">
-            </div>
-            <!--QQ扫码-->
-            <div class="boxflex1 paystyle checkImg3"  data-type="8">
-                <img class="img1" src="../images/qqipay_default.png">
-                <img class="img2" src="../images/qqipay_selected.png">
-            </div> 
-             <div class="boxflex1 paystyle checkImg3"  data-type="4">
-                <img class="img1" src="../images/bankPay.png">
-                <img class="img2" src="../images/bankPay1.png">
-            </div>
-            <div class="boxflex1 paystyle checkImg3"  data-type="13">
-                <img class="img1" src="../images/bankPay2.png">
-                <img class="img2" src="../images/bankPay3.png">
-            </div> 
-
-
+        <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="2">
+            <img src="/images/icon-chat.png" style="width: 20px;">
+            <span>微信扫码</span>
+            <img src="/images/seleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
         </div>
-        
-        
-<!--         <div class="boxflex1 paystyle checkImg3"  data-type="4">
-            <img style="margin-right:15px;width: 20px;" src="/images/yinlain.png">
-            <span>银联支付</span>
-            <img src="/images/seleted.png" alt="" style="float:right;position: relative;" class="check-paythree checkPay" >
+
+       <div class="boxflex1 paystyle checkImg1"  data-type="3">
+            <img src="/images/alipay.png" style="width: 20px;">
+            <span>支付宝扫码</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
-        <p style="color:red;text-align: center">若您使用银行卡充值失败，请确认绑定银行卡信息是否正确</p> -->
+       <div class="boxflex1 paystyle checkImg1 no_border"  data-type="6">
+            <img src="/images/alipay.png" style="width: 20px;">
+            <span>QQ扫码</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
+        </div>
+       <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="10">
+            <img src="/images/icon-chat.png" style="width: 20px;">
+            <span>京东扫码</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
+        </div>
+
+       <div class="boxflex1 paystyle checkImg1"  data-type="11">
+            <img src="/images/alipay.png" style="width: 20px;">
+            <span>银联扫码</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
+        </div>
+       <div class="boxflex1 paystyle checkImg1"  data-type="7">
+            <img src="/images/pay.png" style="width: 20px;">
+            <span>H5网银支付</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
+        </div>
+        <div class="boxflex1 paystyle checkImg1"  data-type="7">
+            <img src="/images/pay.png" style="width: 20px;">
+            <span>手机银联快捷</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
+        </div>
     </div>
-    <div class="recharge-btn-cotnainer">
-         <div class="recharge-btn" id="payBtn">立即充值</div>
-    </div>
-   
+    <div class="recharge-btn" id="payBtn">立即充值</div>
+
     <?php self::endForm() ?>
     <div class="row">
         <!-- <div class="col-xs-12 text-center font_14 remain">跳转至微信安全支付网页，微信转账说明</div> -->
@@ -265,95 +247,47 @@
 </div>
 <script>
 $(function() {
-    //判断时间是否在范围内
-    //alert(123);
-    // function isTiming(){
-    //     var date = new Date();
-    //     var year = date.getFullYear();
-    //     var month = date.getMonth()+1;
-    //     var day = date.getDate();
-    //     var hour = date.getHours();
-    //     var minute = date.getMinutes();
-    //     var second = date.getSeconds();
-    //     if( !( hour >= 4 && hour <= 7 ) ){
-    //         return false;
-    //     }
-    //     return true;
-    // }
-    
-
-
-    $('#type').val(11);
+    $('#type').val(2);
     $(".btn_money").click(function() {
         $(".on").removeClass("on");
         $(this).addClass("on");
         $('#amount').val($(this).html());
-        $(".custom").val($(this).html());
+        $("#chargeAmount").val( $(this).html() );
+
+        var val = $(this).html();
+        var rate = 0.02;    //后台给定
+        $(".real_count").html(val * (1 - rate));
     });
 
-    $(".custom").blur(function(event) {
-        var val = $(this).val();
-        $('#amount').val(val);
+    $("#chargeAmount").blur(function(){
+        var amount = $(this).val();
+        if( isNaN(amount) ){
+            $(this).val(0);
+            return false;
+        }
+        $('#amount').val(amount);
     });
+
     $('#payBtn').on('click', function(){
-
-        // if(isTiming()){
-        //     $.alert('充值时间为早7点到次日凌晨4点');
-        //     return;
-        // }
-
-
-        var data = {};
-        data.amount = $('#amount').val();
-        if(!data.amount || isNaN(data.amount) || data.amount <= 0){
+        var amount = $('#amount').val();
+        if(!amount || isNaN(amount) || amount <= 0){
             alert('金额输入不合法!');
             return false;
         }
-        data.userId = $('#userId').val();
-        data.type = $('#type').val();
-        data.adminId = $('#adminId').val();
-        if(data.type == 13) {
-            var str = prompt("请输入银行预留手机号","");
-            if(!str) {
-                return false;
-            }else {
-                $("#mobile").val(str);
-            }
-        }
-        if (data.type == 1) {
-            $.post("<?= url(['user/ajaxWxurl']) ?>", {data:data.amount}, function(msg){
-                if(msg.state) {
-                    window.location.href = msg.info;
-                } else {
-                    $.alert(msg.info);
-                }
-            })
-        } else {
-            $("#payform").submit();
-        }
+        $("#payform").submit();
     });
+
     $('.payType .paystyle').on('click', function(){
         var type = $(this).data('type');
         $('.payType .paystyle').each(function(){
             if (type == $(this).data('type')) {
-                /*$(this).find('.checkPay').attr({"src":"/images/seleted.png"});*/
-                $(this).addClass("active")
+                $(this).find('.checkPay').attr({"src":"/images/seleted.png"});
             } else {
-                /*$(this).find('.checkPay').attr({"src":"/images/notseleted.png"});*/
-                $(this).removeClass("active")
+                $(this).find('.checkPay').attr({"src":"/images/notseleted.png"});
             }
         });
         $('#type').val(type);
     });
-})
 
-$(function(){
-    $(".my-pay-container>div:nth-child(1)").trigger("click");
-});
-</script>
-<script type="text/javascript">
-    $(function(){
-        var val = $(".btn_money.on").html();
-        $("#amount").val(val);
-    });
+})
 </script>
