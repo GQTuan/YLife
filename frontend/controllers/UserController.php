@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use common\modules\setting\models\Setting;
 use Yii;
 use frontend\models\User;
 use frontend\models\UserAccount;
@@ -425,7 +426,9 @@ class UserController extends \frontend\components\Controller
     {     
         $this->view->title = '我的账户-充值';
         $user = User::findModel(u()->id);
-        return $this->render('recharge', compact('user'));
+        $_settings = Setting::getConfig();
+        $rate = isset($_settings['recharge_fee']) ? $_settings['recharge_fee'] / 100 : UserCharge::CHARGE_FEE;
+        return $this->render('recharge', compact('user', 'rate'));
     }
 
     public function actionWechatPay()

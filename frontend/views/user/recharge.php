@@ -241,7 +241,7 @@ $(function() {
         $("#chargeAmount").val( $(this).html() );
 
         var val = $(this).html();
-        var rate = 0.02;    //后台给定
+        var rate = <?= $rate ?>;    //后台给定
         $(".real_count").html(val * (1 - rate));
     });
 

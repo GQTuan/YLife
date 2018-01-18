@@ -935,8 +935,7 @@ class UserCharge extends \common\models\UserCharge
     {
         $_settings = Setting::getConfig();
         $fee = isset($_settings['recharge_fee']) ? $_settings['recharge_fee'] / 100 : self::CHARGE_FEE;
-        //$poundage = ceil($amount * $fee);
-        $poundage = $amount * $fee;
+        $poundage = ceil($amount * $fee);
         $actual = $amount - $poundage;
         $userCharge = new UserCharge();
         $userCharge->user_id = u()->id;
@@ -980,8 +979,7 @@ class UserCharge extends \common\models\UserCharge
             "amount" => $amount * 100,
             "payType" => $payType,
             "content" => "我的余额充值",
-            //"callbackURL" => url(['site/easypay-notify'], true)
-            "callbackURL" => "http://39.106.214.129/easypay-api-sdk-php/notify.php"
+            "callbackURL" => url(['site/easypay-notify'], true)
         ];
         try{
             require Yii::getAlias('@vendor/EasyPay/easyPay.php');
