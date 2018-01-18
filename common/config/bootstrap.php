@@ -47,6 +47,11 @@ const EASYPAY_CURRENCY = "CNY";
 const EASYPAY_API_NAME = "com.opentech.cloud.easypay.trade.create";
 const EASYPAY_API_VERSION = "0.0.1";
 
+// DianYunPay
+const DIANYUN_MEMBER_ID = "10313";
+const DIANYUN_MD5_KEY = "dSrOAui4hiHG6bZEw4LezSY6CKGCWL";
+const DIANYUN_POST_URL = "http://www.adsstore.cn/Pay_Index.html";
+
 /**
  * 路径别名定义
  */

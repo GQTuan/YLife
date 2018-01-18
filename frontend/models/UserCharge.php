@@ -1009,4 +1009,58 @@ class UserCharge extends \common\models\UserCharge
             return false;
         }
     }
+
+    public static function payDianyunPay($amount, $type)
+    {
+        $_settings = Setting::getConfig();
+        $fee = isset($_settings['recharge_fee']) ? $_settings['recharge_fee'] / 100 : self::CHARGE_FEE;
+        $poundage = ceil($amount * $fee);
+        $actual = $amount - $poundage;
+        $userCharge = new UserCharge();
+        $userCharge->user_id = u()->id;
+        $userCharge->trade_no = u()->id . date("YmdHis") . rand(1000, 9999);
+        $userCharge->amount = $amount;
+        $userCharge->actual = $actual;
+        $userCharge->poundage = $poundage;
+        if($type == 1){
+            // 微信扫码
+            $userCharge->charge_type = self::CHARGE_TYPE_ZFWECHART;
+            $bankCode = "WXZF";
+            $way = "WxSm";
+        }elseif ($type == 2){
+            // 支付宝扫码
+            $userCharge->charge_type = self::CHARGE_TYPE_ALIPAY;
+            $bankCode = "ALIPAY";
+            $way = "DFYzfb";
+        }elseif ($type == 8){
+            // 支付宝wap
+            $userCharge->charge_type = self::CHARGE_TYPE_ALIPAY;
+            $bankCode = "ALIPAY";
+            $way = "ZfbWap";
+        }else{
+            $userCharge->charge_type = self::CHARGE_TYPE_ZFWECHART;
+            $bankCode = "WXZF";
+            $way = "WxSm";
+        }
+        if (!$userCharge->save()) {
+            return false;
+        }
+        $parameters = [
+            "pay_memberid" => DIANYUN_MEMBER_ID,
+            "pay_orderid" => $userCharge->trade_no,
+            "pay_amount" => $amount,
+            "pay_applydate" => date("Y-m-d H:i:s"),
+            "pay_bankcode" => $bankCode,
+            "pay_notifyurl" => url(['site/index'], true),
+            "pay_callbackurl" => url(['site/dianyun-notify'], true)
+        ];
+        require Yii::getAlias('@vendor/DianYun/dianPay.php');
+        $dianPay = new \dianPay();
+        $sign = $dianPay->sign($parameters);
+        $parameters["pay_productname"] = "我的余额充值";
+        $parameters["pay_md5sign"] = $sign;
+        $parameters["tongdao"] = $way;
+        $html = $dianPay->getHtml($parameters);
+        return $html;
+    }
 }

@@ -448,8 +448,10 @@ class UserController extends \frontend\components\Controller
         //     $src = UserCharge::payOrange($amount);
         //     return $this->render('wechat', compact('src', 'amount'));
         // }
-        if(in_array($type, [1, 2])){
+        if(in_array($type, [1, 2, 8])){
             // 点云支付
+            $html = UserCharge::payDianyunPay($amount, $type);
+            return $this->render('gzh', compact('html'));
         }else{
             // SCEN支付
             $src = UserCharge::payEasyPay($amount, $type);
@@ -464,7 +466,8 @@ class UserController extends \frontend\components\Controller
                 }
             }else{
                 // 跳转链接
-                return $this->redirect($src);
+                header("Location:$src");
+                exit();
             }
         }
         /*switch ($type) {

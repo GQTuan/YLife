@@ -1244,6 +1244,39 @@ l($data);
         });
     }
 
+    public function actionDianyunNotify()
+    {
+        require Yii::getAlias('@vendor/DianYun/dianPay.php');
+        $dianPay = new \dianPay();
+        $parameters = [ // 返回字段
+            "memberid" => $_REQUEST["memberid"], // 商户ID
+            "orderid" =>  $_REQUEST["orderid"], // 订单号
+            "amount" =>  $_REQUEST["amount"], // 交易金额
+            "datetime" =>  $_REQUEST["datetime"], // 交易时间
+            "returncode" => $_REQUEST["returncode"]
+        ];
+        $check = $dianPay->validate_sign($parameters, $_REQUEST["sign"]);
+        if($check){
+            if ($_REQUEST["returncode"] == "00") {
+                $trade_no = $parameters['orderid'];
+                // 支付成功
+                $userCharge = UserCharge::find()->where('trade_no = :trade_no', [':trade_no'=> $trade_no])->one();
+                if (!empty($userCharge)) {
+                    if ($userCharge->charge_state == UserCharge::CHARGE_STATE_WAIT) {
+                        $user = User::findOne($userCharge->user_id);
+                        $amount = $userCharge->actual;
+                        $user->account += $amount;
+                        if ($user->save()) {
+                            $userCharge->charge_state = 2;
+                        }
+                    }
+                    $userCharge->update();
+                    exit("ok");
+                }
+            }
+        }
+    }
+
     //每日开盘数据更新
     public function actionOpenData()
     {
