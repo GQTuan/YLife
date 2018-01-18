@@ -174,7 +174,7 @@
                 <a class="btn_money">10000</a>
             </div>
         </div>
-        <input type="hidden" id="amount" name="amount" value="4800">
+        <input type="hidden" id="amount" name="amount" value="500">
         <input type="hidden" id="type" name="type" value="2">
     </div>
     <p class="real_count_con">实际到账：<span class="real_count"></span></p>
