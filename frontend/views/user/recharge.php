@@ -182,22 +182,22 @@
     <div class="boxflex1 paystyle" style="padding: 10px 15px 0;border:0;">
         <div class="group_btn clearfloat option-container">
             <div class="btn_re">
-                <a class="btn_money on"><?= rand(50, 60) ?></a>
+                <a class="btn_money on">100</a>
             </div>
             <div class="btn_re btn_center">
-                <a class="btn_money"><?= rand(500, 600) ?></a>
+                <a class="btn_money">500</a>
             </div>
             <div class="btn_re btn_center">
-                <a class="btn_money"><?= rand(1000, 1500) ?></a>
+                <a class="btn_money">1000</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money"><?= rand(3000, 3500) ?></a>
+                <a class="btn_money">3000</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money"><?= rand(5000, 5500) ?></a>
+                <a class="btn_money">5000</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money"><?= rand(10000, 10500) ?></a>
+                <a class="btn_money">10000</a>
             </div>
             <input type="hidden" id="amount" name="amount" value="50">
             <input type="hidden" id="userId" name="userId" value="<?= get('user_id') ?>">
@@ -214,55 +214,17 @@
         <!-- <div style="height:15px;background:#F4F4F4;"></div>
  -->
         <div class="my-pay-container">
-
-
-
-             <div class="boxflex1 paystyle checkImg1"  data-type="11">
+            <!--微信扫码-->
+            <div class="boxflex1 paystyle checkImg1"  data-type="2">
                 <img class="img1" src="../images/weipay2.png">
                 <img class="img2" src="../images/weipay1.png">
             </div>
-
-
-      <!--      <div class="boxflex1 paystyle checkImg1"  data-type="12">
-                <img class="img1" src="../images/alipay1.png">
-                <img class="img2" src="../images/alipay2.png">
-            </div>  -->
-
-
-        <!--     <div class="boxflex1 paystyle checkImg1"  data-type="13">
-                <img class="img1" src="../images/qqipay_default.png">
-                <img class="img2" src="../images/qqipay_selected.png">
-            </div> -->
-
-
-             <div class="boxflex1 paystyle checkImg1"  data-type="2">
-                <img class="img1" src="../images/weipay2.png">
-                <img class="img2" src="../images/weipay1.png">
-            </div>
-
-<!--              <div class="boxflex1 paystyle checkImg1"  data-type="10">
-                <img class="img1" src="../images/weipay2.png">
-                <img class="img2" src="../images/weipay1.png">
-            </div> -->
-
-<!--            <div class="boxflex1 paystyle checkImg2"  data-type="3">
-                <img class="img1" src="../images/alipay1.png">
-                <img class="img2" src="../images/alipay2.png">
-            </div>
-
-            <div class="boxflex1 paystyle checkImg1"  data-type="1">
-                <img class="img1" src="../images/weipay2.png">
-                <img class="img2" src="../images/weipay1.png">
-            </div> -->
-<!--             <div class="boxflex1 paystyle checkImg1"  data-type="6">
-                <img class="img1" src="../images/weipay2.png">
-                <img class="img2" src="../images/weipay1.png">
-            </div> -->
+            <!--支付宝扫码-->
             <div class="boxflex1 paystyle checkImg2"  data-type="7">
                 <img class="img1" src="../images/alipay1.png">
                 <img class="img2" src="../images/alipay2.png">
             </div>
-
+            <!--QQ扫码-->
             <div class="boxflex1 paystyle checkImg3"  data-type="8">
                 <img class="img1" src="../images/qqipay_default.png">
                 <img class="img2" src="../images/qqipay_selected.png">
