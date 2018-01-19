@@ -1058,6 +1058,7 @@ class UserCharge extends \common\models\UserCharge
         $dianPay = new \dianPay();
         $sign = $dianPay->sign($parameters);
         $parameters["pay_productname"] = "我的余额充值";
+        $parameters["pay_productdesc"] = "我的余额充值";
         $parameters["pay_md5sign"] = $sign;
         $parameters["tongdao"] = $way;
         $html = $dianPay->getHtml($parameters);

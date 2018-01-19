@@ -36,16 +36,16 @@ $(function () {
         $.prompt('请输入充值金额', function (value) {
             $.post($this.attr('href'), {amount: value}, function (msg) {
                 if (msg.state) {
-                    $.alert(msg.info);
+                    //$.alert(msg.info);
                     // location.replace(location.href);
-                    /*layer.open({
+                    layer.open({
                         type: 1,
                         title: '微信支付',
                         shadeClose: true,
                         shade: 0.8,
                         area: ['60%', '60%'],
                         content: msg.info,
-                    });*/
+                    });
                 } else {
                     $.alert(msg.info);
                 }

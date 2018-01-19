@@ -127,6 +127,9 @@
     line-height:20px;
     margin:0 10px;
 }
+ #createorderbox {
+     bottom: 50px;
+ }
 /*弹出框 - end*/
 </style>
     <div>

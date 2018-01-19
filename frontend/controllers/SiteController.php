@@ -63,7 +63,9 @@ class SiteController extends \frontend\components\Controller
     public function actionShop()
     {
         $this->view->title = '商城';
-        return $this->render('shop');
+        $productArr = Product::getIndexProduct();
+        reset($productArr);
+        return $this->render('shop', compact("productArr"));
     }
 
     public function actionHint()

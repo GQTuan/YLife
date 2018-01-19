@@ -173,7 +173,25 @@
                         <a class="into" style="float: right" href="/site/index">全部<img src="/images/into.png"></a>
                     </div>
                     <div class="quotation " style="display: flex; display: -moz-box; display: -webkit-box;">
-                        <div class="item">
+                        <?php foreach ($productArr as $key => $value): ?>
+                            <div class="item">
+                                <a href="/site/index">
+                                    <?php $class='down';if ($value['price'] > $value['close']){ $class = 'up';} $price=$value['price'];
+                                    if ((date('w') == 6 && $value['source'] == 1 && date('G') > 5) || (date('w') == 0 && $value['source'] == 1)) {$price='休市';} ?>
+                                    <div class="title"><?= $value['name'] ?></div>
+                                    <div class="value">
+                                        <span id="price-EURUSD"><?= $price ?></span>
+                                        <span id="updown-EURUSD">
+                                        <?php if ($price != '休市'): ?>
+                                        <img src="/images/icon_arrow_<?= $class ?>.png">
+                                        <?php endif ?>
+                                    </span>
+                                    </div>
+                                </a>
+                            </div>
+                            <span class="divider"></span>
+                        <?php endforeach ?>
+                        <!--<div class="item">
                             <a href="/site/index">
                                 <div class="title">黄金</div>
                                 <div class="value">
@@ -208,7 +226,7 @@
                                 </div>
                             </a>
                         </div>
-                        <span class="divider"></span>
+                        <span class="divider"></span>-->
                     </div>
                 </div>
 
