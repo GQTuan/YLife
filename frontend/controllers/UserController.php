@@ -2,7 +2,9 @@
 
 namespace frontend\controllers;
 
+use admin\models\Retail;
 use common\modules\setting\models\Setting;
+use frontend\models\AdminUser;
 use Yii;
 use frontend\models\User;
 use frontend\models\UserAccount;
@@ -114,8 +116,8 @@ class UserController extends \frontend\components\Controller
             if (!is_numeric($userWithdraw->amount)) {
                 return error('取现金额必须是数字');
             }
-            if ($userWithdraw->amount < 20) {
-                return error('取现金额不能低于20元！');
+            if ($userWithdraw->amount < 10) {
+                return error('取现金额不能低于10元！');
             }
             $bank = Bank::find()->where(['number' => $userAccount->bank_name])->one();
             if (empty($bank)) {
@@ -252,7 +254,7 @@ class UserController extends \frontend\components\Controller
                 return error($userAccount);
             }
         }
-        return $this->render('manager', compact('userAccount'));
+        return $this->render('manager', compact('userAccount', 'invideCode'));
     }
 
     public function actionMyOffline()

@@ -63,6 +63,7 @@ class UserController extends \admin\components\Controller
                 'id',
                 'nickname',
                 'mobile',
+                'parent.nickname' => ['header' => '推荐人'],
                 'admin.username' => ['header' => '用户上级'],
                 'start_time' => ['type' => 'datepicker']
             ]

@@ -75,7 +75,8 @@ class GatherXinfu extends Gather
         $this->switchMap = option('risk_product') ?: [];
         $nowtime = time();
         // 自身产品
-        $products = Product::find()->where(['state' => 1, 'on_sale' => 1, 'source' => 2])->select('table_name, trade_time, id')->asArray()->all();
+        //$products = Product::find()->where(['state' => 1, 'on_sale' => 1, 'source' => 2])->select('table_name, trade_time, id')->asArray()->all();
+        $products = Product::find()->where(['state' => 1, 'source' => 2])->select('table_name, trade_time, id')->asArray()->all();
         $this->productList = array_merge($this->productList, $products);
         foreach ($this->productList as $tableName => $info) {
             if (is_int($tableName)) {

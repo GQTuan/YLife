@@ -211,7 +211,9 @@ class ManagerController extends \frontend\components\Controller
         // User::registerUser(get('code'));
         $userExtend->coding = '';
 
-        return $this->render('register', compact('user', 'userExtend'));
+        $admin = Retail::find()->where('admin_id = :admin_id', [':admin_id'=> $user->admin_id])->one();
+        $invideCode = $admin->code;
+        return $this->render('register', compact('user', 'userExtend', "invideCode"));
     }
 
     //微信token验证

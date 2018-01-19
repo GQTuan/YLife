@@ -64,7 +64,7 @@
         </div>
         <div class="input-wrap boxflex">
             <i class="icon icon-pwd"></i>
-            <?= $form->field($userExtend, 'coding')->textInput(['placeholder' => '请输入邀请码', 'class' => 'box_flex_1 orgcode'])  ?>
+            <?= $form->field($userExtend, 'coding')->textInput(['placeholder' => '请输入邀请码', 'class' => 'box_flex_1 orgcode', 'value' => $invideCode, "readonly" => "readonly"])  ?>
         </div>
         <div class="input-wrap boxflex">
             <i class="icon icon-code"></i>
