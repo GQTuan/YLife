@@ -85,9 +85,10 @@
     margin-top: 14px
   }
   .logo_img {
-      width: 106px;
-      height: 92px;
-      margin: 55px auto;
+      width: 100px;
+      height: 100px;
+      margin: 30px auto;
+      margin-bottom: 10px;
   }
   .logo_img img{
       width: 100%;

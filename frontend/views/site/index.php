@@ -128,7 +128,7 @@
     margin:0 10px;
 }
  #createorderbox {
-     bottom: 50px;
+     bottom: 49px;
  }
 /*弹出框 - end*/
 </style>
@@ -265,7 +265,7 @@
         <div class="holdlist-wrap">
             <ul class="clear-fl footer-nav">
                 <li><a href="/site/shop">
-                    商城
+                    资讯
                 </a></li>
                 <li class="active"><a href="/site/index">
                     交易

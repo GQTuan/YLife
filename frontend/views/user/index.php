@@ -99,7 +99,7 @@
         <div class="holdlist-wrap">
             <ul class="clear-fl footer-nav">
                 <li><a href="/site/shop">
-                    商城
+                    资讯
                 </a></li>
                 <li class=""><a href="/site/index">
                     交易
