@@ -1,6 +1,5 @@
 <?php use common\helpers\Html; ?>
 <?php common\assets\HighStockAsset::register($this) ?>
-<?php $this->regJs('candle') ?>
 
 <?php $this->regCss('jiaoyi') ?>
 <?php $this->regCss('trade') ?>
@@ -29,7 +28,7 @@
         width: 100%;
     }
     .home .content {
-        top: 170px;
+        top: 118px;
         z-index: 3;
         position: absolute;
         width: 100%;
@@ -123,7 +122,7 @@
     }
     .yincan{
         width: calc(100% - 24px)!important;
-        height: 1.1%!important;
+        height: 66px!important;
         position: absolute!important;
         background-color: #FFFFFF!important;
         filter: alpha(opacity=0)!important;
@@ -142,7 +141,9 @@
     <div class="mainbody">
         <div id="app" class="home">
             <div class="banner">
-                <div class="swiper-container swiper-container-horizontal">
+                <img style="width:100%;" src="/images/banner2.png">
+
+                <!-- <div class="swiper-container swiper-container-horizontal">
                     <div class="swiper-wrapper">
                         <div class="swiper-slide swiper-slide-duplicate swiper-slide-next swiper-slide-duplicate-prev" data-swiper-slide-index="0">
                             <a href="/site/index">
@@ -164,7 +165,7 @@
                             </a>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="content">
                 <div class="carder" style="display: block;padding: 8px 0">
@@ -283,7 +284,7 @@
                     <div class="kuaixun" style="margin: 0rem;padding-bottom: 0;box-shadow:none;" id="kuaixun">
                         <!-- <div style="width:90%;height:7200px; position:absolute;background-image: url(/images/time.png); filter:alpha(opacity=0);top:919;left:172;"></div> -->
                         <div class="yincan" style="width:89%;height:1.1%;position:absolute;background-color:#FFFFFF;filter:alpha(opacity=0);right:2rem;left:1rem">
-                            <p style="color: red;margin: 0 auto;text-align: center;line-height:2rem">关注盈天下，让你的钱包涨涨涨！<br>关注微信，咨询您的专属VIP客服！</p>
+                            <p style="color: red;margin: 0 auto;text-align: center;line-height:2rem">关注云生活，让你的钱包涨涨涨！<br>关注微信，咨询您的专属VIP客服！</p>
                         </div>
                         <iframe height="8000px" width="90%" marginheight="50px" frameborder="0" scrolling="no" src="http://www.jin10.com/example/jin10.com.html?width=max&amp;height=8000&amp;theme=white&amp;scrolling=no">
                             
@@ -371,7 +372,7 @@
         { 
             window.location.reload(); 
         } 
-        setTimeout('myrefresh()',30000); //指定1秒刷新一次    
+        // setTimeout('myrefresh()',30000); //指定1秒刷新一次    
     </script>
 </div>
 
@@ -385,7 +386,7 @@
     <div class="holdlist-wrap">
         <ul class="clear-fl footer-nav">
             <li class="active"><a href="/site/shop">
-                商城
+                资讯
             </a></li>
             <li><a href="/site/index">
                 交易

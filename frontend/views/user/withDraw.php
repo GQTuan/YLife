@@ -60,12 +60,15 @@
         transform:rotate(-45deg);
         -webkit-transform:rotate(-45deg);
     }
+    #useraccount-bank_name{
+        margin-top: 5px;
+    }
 </style>
 
 
 <div class="header">
     <a href="javascript:history.go(-1)"> <span class="back_arrow"></span> </a>
-    体现
+    提现
 </div>
 
 
