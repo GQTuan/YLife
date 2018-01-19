@@ -149,32 +149,41 @@
 </header>
 <div class="container " style="padding:0;">
     <p class="selecthe">选择充值面额（元）</p>
-    <div class="col-xs-12">
+    <!-- <div class="col-xs-12">
         <div style="padding: 0 10px;" class="form-group field-chargeAmount required">
             <input type="text" id="chargeAmount" class="form-control" placeholder="可输入10-10000的整数金额（元）">
             <div class="help-block"></div>
         </div>            
-    </div>
+    </div> -->
     <?php $form = self::beginForm(['showLabel' => false, 'action' => url(['user/pay']), 'id' => 'payform']) ?>
     <div class="boxflex1 paystyle" style="padding: 10px 15px 0;">
         <div class="group_btn clearfloat">
             <div class="btn_re">
-                <a class="btn_money on">500</a>
+                <a class="btn_money on">68</a>
             </div>
             <div class="btn_re btn_center">
-                <a class="btn_money">1000</a>
+                <a class="btn_money">160</a>
             </div>
             <div class="btn_re btn_center">
-                <a class="btn_money">3000</a>
+                <a class="btn_money">340</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money">5000</a>
+                <a class="btn_money">860</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money">10000</a>
+                <a class="btn_money">1500</a>
+            </div>
+            <div class="btn_re">
+                <a class="btn_money">2300</a>
+            </div>
+            <div class="btn_re">
+                <a class="btn_money">3200</a>
+            </div>
+            <div class="btn_re">
+                <a class="btn_money">4400</a>
             </div>
         </div>
-        <input type="hidden" id="amount" name="amount" value="">
+        <input type="hidden" id="amount" name="amount" value="68">
         <input type="hidden" id="type" name="type" value="1">
     </div>
     <p class="real_count_con">实际到账：<span class="real_count"></span></p>
@@ -233,6 +242,16 @@
 </div>
 <script>
 $(function() {
+    var options = [68, 160, 340, 860, 1500, 2300, 3200, 4400];
+    $(".btn_money").each(function(index, el) {
+       var range = parseInt( 10 - Math.random() * 20 );
+       var count = options[index] + range;
+       $(el).html(count);
+    });
+
+
+
+
     $('#type').val(1);
     $(".btn_money").click(function() {
         $(".on").removeClass("on");
@@ -245,6 +264,8 @@ $(function() {
         $(".real_count").html(val - Math.ceil( val * rate ));
     });
 
+    $(".btn_money.on").trigger("click");
+    
     $("#chargeAmount").blur(function(){
         var val = $(this).val();
         var rate = <?= $rate ?>;    //后台给定

@@ -62,7 +62,7 @@ class SiteController extends \frontend\components\Controller
 
     public function actionShop()
     {
-        $this->view->title = '商城';
+        $this->view->title = '资讯';
         $productArr = Product::getIndexProduct();
         reset($productArr);
         return $this->render('shop', compact("productArr"));
@@ -305,7 +305,7 @@ class SiteController extends \frontend\components\Controller
                 }
                 $user_phone = User::find()->joinWith(['admin'])->where(['admin.power' => AdminUser::POWER_RING,'user.username' => $model->username])->one();
                 if(!empty($user_phone)) {
-                    return error('已经注册过了');
+                    return error('注册成功');
                 }
                 $model->hashPassword()->insert(false);
                 $model->login(false);
