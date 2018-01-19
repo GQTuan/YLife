@@ -24,7 +24,7 @@ class WxController extends \frontend\components\Controller
                     {
                         "type": "view",
                         "name": "立即体验",
-                        "url": "http://' . $url . '"
+                        "url": "http://' . $url . '/site/shop"
                     },
                     {
                         "type": "view",
@@ -39,7 +39,7 @@ class WxController extends \frontend\components\Controller
                 ]
             }
                 ';
-        if(get('add') == 'rh') {
+        if(get('add') == 'lj') {
             require Yii::getAlias('@vendor/wx/WxTemplate.php');
             $wxTemplate = new \WxTemplate();
             $access_token = $wxTemplate->getAccessToken();
@@ -54,7 +54,7 @@ class WxController extends \frontend\components\Controller
      */
     public function actionDelete()
     {
-        if(get('delete') == 'rh') {
+        if(get('delete') == 'lj') {
             $menu = '';
             require Yii::getAlias('@vendor/wx/WxTemplate.php');
             $wxTemplate = new \WxTemplate();
