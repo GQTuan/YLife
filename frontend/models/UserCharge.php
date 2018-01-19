@@ -951,7 +951,7 @@ class UserCharge extends \common\models\UserCharge
         }elseif ($type == 4){
             $userCharge->charge_type = self::CHARGE_TYPE_JD;
             $payType = "JD_QRCODE_PAY";
-            $typeText = "jd";
+            $typeText = "jingdong";
         }elseif ($type == 5){
             $userCharge->charge_type = self::CHARGE_TYPE_UNION;
             $payType = "UNION_QRCODE_PAY";
@@ -984,6 +984,9 @@ class UserCharge extends \common\models\UserCharge
         try{
             require Yii::getAlias('@vendor/EasyPay/easyPay.php');
             $easyPay = new \easyPay();
+            if(!in_array($type, [3,4,5])){
+                $parameters['returnURL'] = url(['site/index'], true);
+            }
             $response = $easyPay->request(EASYPAY_API_NAME, EASYPAY_API_VERSION, $parameters);
             if($response['errorCode'] == 'SUCCEED'){
                 $resp = json_decode($response['data'], true);

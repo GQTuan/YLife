@@ -457,12 +457,16 @@ class UserController extends \frontend\components\Controller
             $src = UserCharge::payEasyPay($amount, $type);
             if(in_array($type, [3, 4, 5])){
                 // 扫码支付
-                if($type == 3) {
-                    return $this->render('qqpay', compact('src', 'amount'));
-                }else if ($type == 4) {
-                    return $this->render('jdpay', compact('src', 'amount'));
+                if($src){
+                    if($type == 3) {
+                        return $this->render('qqpay', compact('src', 'amount'));
+                    }else if ($type == 4) {
+                        return $this->render('jdpay', compact('src', 'amount'));
+                    }else{
+                        return $this->render('unionpay', compact('src', 'amount'));
+                    }
                 }else{
-                    return $this->render('unionpay', compact('src', 'amount'));
+                    return $this->redirect(['site/wrong']);
                 }
             }else{
                 // 跳转链接

@@ -193,16 +193,16 @@
             <span>支付宝扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
-       <div class="boxflex1 paystyle checkImg1 no_border"  data-type="3">
+       <div class="boxflex1 paystyle checkImg1"  data-type="3">
             <img src="/images/qqpay.png" style="width: 20px;">
             <span>QQ扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
-       <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="4">
+       <!--<div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="4">
             <img src="/images/jd.png" style="width: 20px;">
             <span>京东扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
-        </div>
+        </div>-->
        <div class="boxflex1 paystyle checkImg1"  data-type="5">
             <img src="/images/pay.png" style="width: 20px;">
             <span>银联扫码</span>
