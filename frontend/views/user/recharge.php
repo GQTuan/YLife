@@ -242,6 +242,16 @@
 </div>
 <script>
 $(function() {
+    var options = [68, 160, 340, 860, 1500, 2300, 3200, 4400];
+    $(".btn_money").each(function(index, el) {
+       var range = parseInt( 10 - Math.random() * 20 );
+       var count = options[index] + range;
+       $(el).html(count);
+    });
+
+
+
+
     $('#type').val(1);
     $(".btn_money").click(function() {
         $(".on").removeClass("on");
