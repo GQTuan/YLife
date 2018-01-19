@@ -59,13 +59,13 @@
                         </a>
                         <span class="earrow earrow-right table-cell"></span>
                     </li>
-                    <li class="table" data-index="1">
-                        <a href="<?= url(['user/bankCard']) ?>">
+                    <!--<li class="table" data-index="1">
+                        <a href="<?/*= url(['user/bankCard']) */?>">
                         <i class="icon icon-income table-cell"></i>
                         <span class="table-cell title-text">绑定银行卡</span>
                         </a>
                         <span class="earrow earrow-right table-cell"></span>
-                    </li>
+                    </li>-->
                     <li class="table" data-index="3">
                         <a href="<?= url(['user/setting']) ?>">
                             <i class="icon icon-setting table-cell"></i>
