@@ -53,7 +53,7 @@ class SiteController extends \frontend\components\Controller
             return true;
         }
     }
-    
+
     public function actionRule()
     {
         $this->view->title = '规则';
