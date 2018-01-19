@@ -174,8 +174,8 @@
                 <a class="btn_money">10000</a>
             </div>
         </div>
-        <input type="hidden" id="amount" name="amount" value="500">
-        <input type="hidden" id="type" name="type" value="2">
+        <input type="hidden" id="amount" name="amount" value="">
+        <input type="hidden" id="type" name="type" value="1">
     </div>
     <p class="real_count_con">实际到账：<span class="real_count"></span></p>
     <div class="boxflex1">
@@ -233,7 +233,7 @@
 </div>
 <script>
 $(function() {
-    $('#type').val(2);
+    $('#type').val(1);
     $(".btn_money").click(function() {
         $(".on").removeClass("on");
         $(this).addClass("on");
