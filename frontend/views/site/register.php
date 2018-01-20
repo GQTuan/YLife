@@ -216,8 +216,8 @@
 
 
 <div class="clear_fl load_app">
-    <a href="/site/wxload?type=ios" class="lf">苹果app下载</a>
-    <a href="/site/wxload?type=android" class="rt">安卓app下载</a>
+    <a href="https://fir.im/pjffffff" class="lf">苹果app下载</a>
+    <a href="https://fir.im/pjff" class="rt">安卓app下载</a>
 </div>
 <!-- 遮罩层结束 -->
 
