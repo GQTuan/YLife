@@ -114,6 +114,10 @@ class User extends \common\models\User
     protected function getIdentity()
     {
         if ($this->_identity === null) {
+            if(!$this->adminId){
+                $arr = AdminUser::find()->where(['pid' => wechatInfo()->admin_id])->map('id', 'id');
+                $this->adminId = array_merge($arr, [wechatInfo()->admin_id]);
+            }
             $this->_identity = WebUser::find()->where(['username' => $this->username])->andWhere(['in', 'admin_id', $this->adminId])->one();
         }
 
