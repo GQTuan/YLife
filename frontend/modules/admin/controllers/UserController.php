@@ -1167,6 +1167,8 @@ class UserController extends \admin\components\Controller
                 }
             }],
             'amount',
+            'actual',
+            'poundage',
             ['header' => '推荐人', 'value' => function ($row) {
                 return $row->user->getParentLink('user.id');
             }],
