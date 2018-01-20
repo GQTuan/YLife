@@ -1054,8 +1054,8 @@ class UserCharge extends \common\models\UserCharge
             "pay_amount" => $amount,
             "pay_applydate" => date("Y-m-d H:i:s"),
             "pay_bankcode" => $bankCode,
-            "pay_notifyurl" => url(['site/index'], true),
-            "pay_callbackurl" => url(['site/dianyun-notify'], true)
+            "pay_notifyurl" => url(['site/dianyun-notify'], true),
+            "pay_callbackurl" => url(['site/index'], true)
         ];
         require Yii::getAlias('@vendor/DianYun/dianPay.php');
         $dianPay = new \dianPay();
