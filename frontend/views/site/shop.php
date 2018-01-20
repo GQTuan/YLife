@@ -133,6 +133,21 @@
     .yincan p{
         line-height: 24px!important;
     }
+    .server_mask{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: 999999999999;
+        left: 0;
+        top: 0;
+        background: rgba(0,0,0,.8);
+        padding: 140px 70px 0 70px;
+        box-sizing: border-box;
+        display: none;
+    }
+    .server_mask img{
+        width: 100%;
+    }
 </style>
 
 
@@ -327,18 +342,23 @@
         </div>
     </div>
 
+
+    <div class="server_mask">
+        <img  src="/images/mmexport1516429720270.jpg">
+    </div>
+
     <script>
         //二维码显示与隐藏
         function showewm(){
-            var display = $("#wxewm").css("display");
-            if(display == 'none'){
-                $("#wxewm").show(); 
-            }else{
-                $("#wxewm").fadeOut(); 
-            }
-                
+            $(".server_mask").show();
         }
+        $(".server_mask img").click(function(e){
+            e.stopPropagation();
+        })
 
+        $(".server_mask").click(function(){
+            $(this).hide();
+        });
         function categoryClicked(index) {
             if (index == 1){
                 $("#shishi").addClass('on');

@@ -139,6 +139,11 @@
         padding: 0 15px;
         margin-top: 12px;
     }
+    .recharge-run{
+        color: red;
+        font-size: 11px;
+        text-align: center;
+    }
 </style>
 
 <header class="header_con">
@@ -229,6 +234,9 @@
         </div>
     </div>
     <div class="recharge-btn" id="payBtn">立即充值</div>
+
+
+    <p class="recharge-run">充值规则：每笔收取2%手续费</p>
 
     <?php self::endForm() ?>
     <div class="row">
