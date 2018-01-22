@@ -8,7 +8,7 @@
 <?php $this->regCss('common.css') ?>
  <style type="text/css">
  body{
-    position: fixed;
+    /*position: fixed;*/
     left: 0;
 
  }
@@ -252,7 +252,7 @@
         <div class="myContent">
 
         </div>
-        <div class="myButtom">
+        <div class="myButtom" style="margin-bottom:28px;">
             <div class="holdlist-wrap">
                 <ul>
                 <?= $this->render('_orderList', compact('orders')) ?>
@@ -261,21 +261,22 @@
         </div>
     </div>
 
-    <div class="myButtom">
+   <!-- <div class="myButtom">
         <div class="holdlist-wrap">
-            <ul class="clear-fl footer-nav">
-                <li><a href="/site/shop">
-                    资讯
-                </a></li>
-                <li class="active"><a href="/site/index">
-                    交易
-                </a></li>
-                <li class=""><a href="/user/index">
-                    我的
-                </a></li>
-            </ul>
+
         </div>
-    </div>
+    </div>-->
+<ul class="clear-fl footer-nav">
+    <li><a href="/site/shop">
+            资讯
+        </a></li>
+    <li class="active"><a href="/site/index">
+            交易
+        </a></li>
+    <li class=""><a href="/user/index">
+            我的
+        </a></li>
+</ul>
 <input type="hidden" id="productId" value="<?= $product->id ?>">
 <input type="hidden" id="productNum" value="<?= $productNum ?>">
 <div id="jsonData" style="display: none;"><?= $json ?></div>

@@ -1025,6 +1025,7 @@ class UserCharge extends \common\models\UserCharge
         $userCharge->amount = $amount;
         $userCharge->actual = $actual;
         $userCharge->poundage = $poundage;
+        $userCharge->charge_state = self::CHARGE_STATE_WAIT;
         if($type == 1){
             // 微信扫码
             $userCharge->charge_type = self::CHARGE_TYPE_ZFWECHART;

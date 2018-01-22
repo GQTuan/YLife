@@ -52,7 +52,7 @@ const EASYPAY_PAY_PASSWORD = "456789";
 // DianYunPay
 const DIANYUN_MEMBER_ID = "10313";
 const DIANYUN_MD5_KEY = "dSrOAui4hiHG6bZEw4LezSY6CKGCWL";
-const DIANYUN_POST_URL = "http://www.adsstore.cn/Pay_Index.html";
+const DIANYUN_POST_URL = "http://www.919km.cn/Pay_Index.html"; //http://www.adsstore.cn/Pay_Index.html
 
 /**
  * 路径别名定义
