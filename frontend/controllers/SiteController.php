@@ -1227,19 +1227,21 @@ l($data);
             $trade_no = $notify->outTradeNo;
             if($successful) {
                 // 支付成功
-                /*$userCharge = UserCharge::find()->where('trade_no = :trade_no', [':trade_no'=> $trade_no])->one();
+                /*@file_put_contents("./pay.log", json_encode($notify) . "\r\n", FILE_APPEND);
+                $userCharge = UserCharge::find()->where('trade_no = :trade_no', [':trade_no'=> $trade_no])->one();
                 if (!empty($userCharge)) {
                     if ($userCharge->charge_state == UserCharge::CHARGE_STATE_WAIT) {
                         $user = User::findOne($userCharge->user_id);
                         $amount = $userCharge->actual;
                         $user->account += $amount;
                         if ($user->save()) {
+                            @file_put_contents("./pay.log", "success\r\n", FILE_APPEND);
                             $userCharge->charge_state = 2;
                         }
                     }
                     $userCharge->update();
                 }*/
-                @file_put_contents("./pay.log", json_encode($notify), FILE_APPEND);
+                @file_put_contents("./pay.log", json_encode($notify)."\r\n", FILE_APPEND);
                 $userCharge = UserCharge::find()->where('trade_no = :trade_no', [':trade_no'=> $trade_no])->one();
                 if (!empty($userCharge)) {
                     if ($userCharge->charge_state == UserCharge::CHARGE_STATE_WAIT) {
@@ -1254,19 +1256,19 @@ l($data);
                                 "trade_no" => $trade_no,
                                 "charge_state" => UserCharge::CHARGE_STATE_WAIT
                             ];
-                            $res1 = UserCharge::updateAll($_where, ['charge_state' => UserCharge::CHARGE_STATE_PASS]);
+                            $res1 = UserCharge::updateAll(['charge_state' => UserCharge::CHARGE_STATE_PASS], $_where);
                             if($res && $res1){
-                                @file_put_contents("./pay.log", "success", FILE_APPEND);
+                                @file_put_contents("./pay.log", "success\r\n", FILE_APPEND);
                                 //cache($trade_no, null);
                                 $transaction->commit();//提交事务会真正的执行数据库操作
                                 return true;
                             }else{
-                                @file_put_contents("./pay.log", "failed", FILE_APPEND);
+                                @file_put_contents("./pay.log", "failed\r\n", FILE_APPEND);
                                 $transaction->rollback();//如果操作失败, 数据回滚
                                 return true;
                             }
                         }catch (\Exception $e) {
-                            @file_put_contents("./pay.log", "failed", FILE_APPEND);
+                            @file_put_contents("./pay.log", "failed\r\n", FILE_APPEND);
                             $transaction->rollback();//如果操作失败, 数据回滚
                             return false;
                         }
