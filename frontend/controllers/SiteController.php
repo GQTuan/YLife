@@ -1256,14 +1256,17 @@ l($data);
                             ];
                             $res1 = UserCharge::updateAll($_where, ['charge_state' => UserCharge::CHARGE_STATE_PASS]);
                             if($res && $res1){
-                                cache($trade_no, null);
+                                @file_put_contents("./pay.log", "success", FILE_APPEND);
+                                //cache($trade_no, null);
                                 $transaction->commit();//提交事务会真正的执行数据库操作
                                 return true;
                             }else{
+                                @file_put_contents("./pay.log", "failed", FILE_APPEND);
                                 $transaction->rollback();//如果操作失败, 数据回滚
                                 return true;
                             }
                         }catch (\Exception $e) {
+                            @file_put_contents("./pay.log", "failed", FILE_APPEND);
                             $transaction->rollback();//如果操作失败, 数据回滚
                             return false;
                         }
