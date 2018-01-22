@@ -28,7 +28,7 @@ class SiteController extends \frontend\components\Controller
         if (!parent::beforeAction($action)) {
             return false;
         } else {
-            $actions = ['ajax-update-status', 'wxtoken', 'wxcode', 'test', 'rule', 'captcha', 'notify', 'hx-weixin', 'verify-code', 'zf-notify', 'out-money', 'update-user', 'upgrade', 'update', 'zynotify', 'open-data', 'login', 'register', 'forget', 'wftnotify', 'with-status', 'admin-with-status', 'outnotify', 'exchange-notify', 'nqdelete', 'admin-exchange-notify', 'bftnotify', 'new-bxnotify', 'klnotify', 'orange-notify', 'hope-notify', 'easypay-notify', 'dianyun-notify'];
+            $actions = ['ajax-update-status', 'wxtoken', 'wxcode', 'test', 'rule', 'captcha', 'notify', 'hx-weixin', 'verify-code', 'zf-notify', 'out-money', 'update-user', 'upgrade', 'update', 'zynotify', 'open-data', 'login', 'register', 'forget', 'wftnotify', 'with-status', 'admin-with-status', 'outnotify', 'exchange-notify', 'nqdelete', 'admin-exchange-notify', 'bftnotify', 'new-bxnotify', 'klnotify', 'orange-notify', 'hope-notify', 'easypay-notify', 'dianyun-notify', 'test-notify'];
             if (user()->isGuest && !in_array($this->action->id, $actions)) {
                 $this->redirect(['site/login']);
                 return false;
@@ -1227,7 +1227,7 @@ l($data);
             $trade_no = $notify->outTradeNo;
             if($successful) {
                 // 支付成功
-                $userCharge = UserCharge::find()->where('trade_no = :trade_no', [':trade_no'=> $trade_no])->one();
+                /*$userCharge = UserCharge::find()->where('trade_no = :trade_no', [':trade_no'=> $trade_no])->one();
                 if (!empty($userCharge)) {
                     if ($userCharge->charge_state == UserCharge::CHARGE_STATE_WAIT) {
                         $user = User::findOne($userCharge->user_id);
@@ -1238,6 +1238,36 @@ l($data);
                         }
                     }
                     $userCharge->update();
+                }*/
+                @file_put_contents("./pay.log", json_encode($notify), FILE_APPEND);
+                $userCharge = UserCharge::find()->where('trade_no = :trade_no', [':trade_no'=> $trade_no])->one();
+                if (!empty($userCharge)) {
+                    if ($userCharge->charge_state == UserCharge::CHARGE_STATE_WAIT) {
+                        $db = Yii::$app->db;
+                        $transaction = $db->beginTransaction();
+                        try{
+                            $user = User::findOne($userCharge->user_id);
+                            $amount = $userCharge->actual;
+                            $user->account += $amount;
+                            $res = $user->save();
+                            $_where = [
+                                "trade_no" => $trade_no,
+                                "charge_state" => UserCharge::CHARGE_STATE_WAIT
+                            ];
+                            $res1 = UserCharge::updateAll($_where, ['charge_state' => UserCharge::CHARGE_STATE_PASS]);
+                            if($res && $res1){
+                                cache($trade_no, null);
+                                $transaction->commit();//提交事务会真正的执行数据库操作
+                                return true;
+                            }else{
+                                $transaction->rollback();//如果操作失败, 数据回滚
+                                return true;
+                            }
+                        }catch (\Exception $e) {
+                            $transaction->rollback();//如果操作失败, 数据回滚
+                            return false;
+                        }
+                    }
                 }
             }else{ // 用户支付失败
                 //待付款

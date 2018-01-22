@@ -222,7 +222,7 @@
             <span>银联扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
-       <div class="boxflex1 paystyle checkImg1"  data-type="6">
+       <!--<div class="boxflex1 paystyle checkImg1"  data-type="6">
             <img src="/images/pay.png" style="width: 20px;">
             <span>H5网银支付</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
@@ -231,7 +231,7 @@
             <img src="/images/pay.png" style="width: 20px;">
             <span>手机银联快捷</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
-        </div>
+        </div>-->
     </div>
     <div class="recharge-btn" id="payBtn">立即充值</div>
 
