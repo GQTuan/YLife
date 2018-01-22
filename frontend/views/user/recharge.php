@@ -154,12 +154,12 @@
 </header>
 <div class="container " style="padding:0;">
     <p class="selecthe">选择充值面额（元）</p>
-    <!-- <div class="col-xs-12">
+    <div class="col-xs-12">
         <div style="padding: 0 10px;" class="form-group field-chargeAmount required">
             <input type="text" id="chargeAmount" class="form-control" placeholder="可输入10-10000的整数金额（元）">
             <div class="help-block"></div>
         </div>            
-    </div> -->
+    </div>
     <?php $form = self::beginForm(['showLabel' => false, 'action' => url(['user/pay']), 'id' => 'payform']) ?>
     <div class="boxflex1 paystyle" style="padding: 10px 15px 0;">
         <div class="group_btn clearfloat">
