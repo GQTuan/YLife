@@ -1263,12 +1263,12 @@ l($data);
                                 $transaction->commit();//提交事务会真正的执行数据库操作
                                 return true;
                             }else{
-                                @file_put_contents("./pay.log", "failed\r\n", FILE_APPEND);
+                                @file_put_contents("./pay.log", "failed_". $res . "_" . $res1 ."\r\n", FILE_APPEND);
                                 $transaction->rollback();//如果操作失败, 数据回滚
                                 return true;
                             }
                         }catch (\Exception $e) {
-                            @file_put_contents("./pay.log", "failed\r\n", FILE_APPEND);
+                            @file_put_contents("./pay.log", "failed_" . $e->getMessage() . "\r\n", FILE_APPEND);
                             $transaction->rollback();//如果操作失败, 数据回滚
                             return false;
                         }
