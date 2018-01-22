@@ -149,7 +149,7 @@
         </div>
      </div>
     <div class="clear_fl load_app">
-        <a href="https://fir.im/9wsx" class="lf">苹果app下载</a>
+        <a href="https://fir.im/y8dn" class="lf">苹果app下载</a>
         <a href="https://fir.im/qwk2" class="rt">安卓app下载</a>
     </div>
         <?php self::endForm() ?>
