@@ -129,10 +129,10 @@ class UserCharge extends \common\components\ARModel
             self::CHARGE_TYPE_QQ => 'qq钱包', //qq钱包支付
             self::CHARGE_TYPE_RWECHART => '融微信', //融微信支付
             self::CHARGE_TYPE_RALIPAY => '融支付宝', //融支付宝支付
-			self::CHARGE_TYPE_JD = '京东', //SCEN京东支付
-			self::CHARGE_TYPE_UNION = '银联', //SCEN银联扫码支付
-			self::CHARGE_TYPE_H5_BANK = '网银', //SCEN H5网银支付
-			self::CHARGE_TYPE_H5_UNION = '银联', //SCEN手机银联支付
+			self::CHARGE_TYPE_JD => '京东', //SCEN京东支付
+			self::CHARGE_TYPE_UNION => '银联', //SCEN银联扫码支付
+			self::CHARGE_TYPE_H5_BANK => '网银', //SCEN H5网银支付
+			self::CHARGE_TYPE_H5_UNION => '银联', //SCEN手机银联支付
         ];
 
         return self::resetMap($map, $prepend);
