@@ -8,6 +8,8 @@ use common\helpers\Html;
 class User extends \common\models\User
 {
     public $out_account;
+    public $ringname;
+    public $membername;
 
     public function rules()
     {
@@ -43,9 +45,26 @@ class User extends \common\models\User
 
     public function listQuery()
     {
-        return $this->search()
+        $query = $this->search()
             ->joinWith(['parent', 'admin'])
             ->andFilterWhere(['>', 'user.created_at', $this->created_at]);
+        if ($this->ringname) {
+            $query->andFilterWhere(['like', 'admin.username', $this->ringname]);
+        }
+        if ($this->membername) {
+            $idArr = AdminUser::find()->where(['like', 'username', $this->membername])->map('id', 'id');
+            if (empty($idArr)) {
+                $query->andFilterWhere(['admin.id' => 0]);
+            } else {
+                $idArr2 = AdminUser::find()->where(['in', 'pid', $idArr])->map('id', 'id');
+                $arr = $idArr;
+                if (!empty($idArr2)) {
+                    $arr = array_merge($idArr, $idArr2);
+                }
+                $query->andFilterWhere(['in', 'user.admin_id', $arr]);
+            }
+        }
+        return $query;
     }
 
     public function managerQuery()

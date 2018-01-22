@@ -38,7 +38,23 @@ class UserController extends \admin\components\Controller
             'pid' => ['header' => '推荐人', 'value' => function ($row) {
                 return $row->getParentLink();
             }],
-            'admin.username' => ['header' => '用户上级'],
+            //'admin.username' => ['header' => '用户上级'],
+            'admin.id' => ['header' => '微圈', 'value' => function ($row) {
+                if (!isset($row->admin->power)) {
+                    return '';
+                }
+                return $row->admin->power == AdminUser::POWER_RING ? $row->admin->username : '无';
+            }],
+            'admin.username' => ['header' => '微会员', 'value' => function ($row) {
+                if (!isset($row->admin->power)) {
+                    return '';
+                }
+                if ($row->admin->power == AdminUser::POWER_MEMBER) {
+                    return $row->admin->username;
+                } else {
+                    return AdminUser::findOne($row->admin->pid)->username;
+                }
+            }],
             'account',
             // 'blocked_account' => ['type' => 'text'],
             'profit_account',
@@ -64,7 +80,9 @@ class UserController extends \admin\components\Controller
                 'nickname',
                 'mobile',
                 'parent.nickname' => ['header' => '推荐人'],
-                'admin.username' => ['header' => '用户上级'],
+                //'admin.username' => ['header' => '用户上级'],
+                'ringname' => ['header' => '微圈'],
+                'membername' => ['header' => '微会员'],
                 'start_time' => ['type' => 'datepicker']
             ]
         ]);
@@ -747,8 +765,10 @@ class UserController extends \admin\components\Controller
      */
     public function actionWithdrawList()
     {
-        $query = (new UserWithdraw)->listQuery()->joinWith(['user.parent'])->andWhere(['user.state' => User::STATE_VALID])->orderBy('userWithdraw.updated_at DESC');
-        $countQuery = (new UserWithdraw)->listQuery()->joinWith(['user'])->andWhere(['user.state' => User::STATE_VALID])->andWhere(['op_state' => UserWithdraw::OP_STATE_PASS]);
+        //$query = (new UserWithdraw)->listQuery()->joinWith(['user.parent'])->andWhere(['user.state' => User::STATE_VALID])->orderBy('userWithdraw.updated_at DESC');
+        $query = (new UserWithdraw)->listQuery()->joinWith(['user.parent'])->orderBy('userWithdraw.updated_at DESC');
+        //$countQuery = (new UserWithdraw)->listQuery()->joinWith(['user'])->andWhere(['user.state' => User::STATE_VALID])->andWhere(['op_state' => UserWithdraw::OP_STATE_PASS]);
+        $countQuery = (new UserWithdraw)->listQuery()->joinWith(['user'])->andWhere(['op_state' => UserWithdraw::OP_STATE_PASS]);
         $count = $countQuery->select('SUM(amount) amount')->one()->amount ?: 0;
 
         $html = $query->getTable([
@@ -787,7 +807,7 @@ class UserController extends \admin\components\Controller
                     //     return $string .= Hui::primaryBtn('是否返还', ['isGiveMoney', 'id' => $row->id], ['class' => 'isGiveMoney']);
                     // }
                 }
-                return $string .= Hui::primaryBtn('查看详细详细', ['user/readWithdraw', 'id' => $row['id']], ['class' => 'layer.iframe']);
+                return $string .= Hui::primaryBtn('查看详细', ['user/readWithdraw', 'id' => $row['id']], ['class' => 'layer.iframe']);
                 // if ($row['op_state'] == UserWithdraw::OP_STATE_WAIT) {
                 //     $string = Hui::primaryBtn('会员出金', ['user/verifyWithdraw', 'id' => $row['id']], ['class' => 'layer.iframe']);
                 // } elseif ($row['op_state'] == UserWithdraw::OP_STATE_MID) {
@@ -984,7 +1004,7 @@ class UserController extends \admin\components\Controller
                     $string = Html::successSpan('已审核');
                 }
 
-                return $string .= Hui::primaryBtn('查看详细详细', ['user/adminsReadWithdraw', 'id' => $row['id']], ['class' => 'layer.iframe']);
+                return $string .= Hui::primaryBtn('查看详细', ['user/adminsReadWithdraw', 'id' => $row['id']], ['class' => 'layer.iframe']);
             }]
         ], [
             'searchColumns' => [
