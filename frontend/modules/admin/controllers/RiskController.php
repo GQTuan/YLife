@@ -46,15 +46,15 @@ class RiskController extends \admin\components\Controller
             foreach ($_POST['product'] as $tableName => list($target, $time, $price)) {
 		    $dataAll = DataAll::findOne($tableName);
                     if($target) {
-                        if(in_array($tableName, ['xau', 'conc'])) {
-                           if($target > $dataAll->price + 10 || $target < $dataAll->price - 10) {
-                                return error('只能设置当前价前后10点以内');
-                           }
-                        }else {
+                        //if(in_array($tableName, ['xau', 'conc'])) {
+                        //   if($target > $dataAll->price + 10 || $target < $dataAll->price - 10) {
+                        //        return error('只能设置当前价前后10点以内');
+                        //   }
+                        //}else {
                             if($target > $dataAll->price + 100 || $target < $dataAll->price - 100) {
                                 return error('只能设置当前价前后100点以内');
                            }
-                        }
+                        //}
                     }
                 if ($price && $time) {
                     $data[$tableName] = [
