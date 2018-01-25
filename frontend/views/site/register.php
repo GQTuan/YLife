@@ -216,8 +216,8 @@
 
 
 <div class="clear_fl load_app">
-    <a href="https://fir.im/y8dn" class="lf">苹果app下载</a>
-    <a href="https://fir.im/qwk2" class="rt">安卓app下载</a>
+    <a href="https://fir.im/<?= $apple; ?>" class="lf">苹果app下载</a>
+    <a href="https://fir.im/<?= $android; ?>" class="rt">安卓app下载</a>
 </div>
 <!-- 遮罩层结束 -->
 

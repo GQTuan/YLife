@@ -324,8 +324,9 @@ class SiteController extends \frontend\components\Controller
                 $model->code = $user[0];
                 $model->pid = $user[1];
         }
-
-        return $this->render('register', compact('model', 'user'));
+        $apple = wechatInfo()->mchid;
+        $android = wechatInfo()->mchkey;
+        return $this->render('register', compact('model', 'user', 'apple', 'android'));
     }
 
     public function actionWeChart()
@@ -377,8 +378,9 @@ class SiteController extends \frontend\components\Controller
                 return error($model);
             }
         }
-
-        return $this->render('login', compact('model'));
+        $apple = wechatInfo()->mchid;
+        $android = wechatInfo()->mchkey;
+        return $this->render('login', compact('model', 'apple', 'android'));
     }
     public function actionLogout()
     {
