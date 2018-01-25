@@ -303,7 +303,9 @@ class SiteController extends \frontend\components\Controller
                 } else {
                     return error('请填写正确的邀请码！');
                 }
-                $user_phone = User::find()->joinWith(['admin'])->where(['admin.power' => AdminUser::POWER_RING,'user.username' => $model->username])->one();
+                $arr = AdminUser::find()->where(['pid' => wechatInfo()->admin_id])->map('id', 'id');
+                $adminIds = array_merge($arr, [wechatInfo()->admin_id]);
+                $user_phone = User::find()->joinWith(['admin'])->where(['admin.power' => AdminUser::POWER_RING,'user.username' => $model->username])->andWhere(['in', 'user.admin_id', $adminIds])->one();
                 if(!empty($user_phone)) {
                     return error('注册成功');
                 }
