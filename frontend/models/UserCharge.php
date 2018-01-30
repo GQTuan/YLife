@@ -965,9 +965,13 @@ class UserCharge extends \common\models\UserCharge
             $payType = "H5_UNION_PAY";
             $typeText = "h5union";
         }elseif ($type == 9){
-            $userCharge->charge_type = self::CHARGE_TYPE_QQ;
+            $userCharge->charge_type = self::CHARGE_TYPE_QQ_WAP;
             $payType = "QQ_WAP_PAY";
-            $typeText = "QQ";
+            $typeText = "qq";
+        }elseif ($type == 10){
+            $userCharge->charge_type = self::CHARGE_TYPE_JD_WAP;
+            $payType = "JD_WAP_PAY";
+            $typeText = "jd";
         }else{
             $userCharge->charge_type = self::CHARGE_TYPE_H5_UNION;
             $payType = "H5_UNION_PAY";

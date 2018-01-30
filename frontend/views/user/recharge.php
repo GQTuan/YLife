@@ -223,6 +223,11 @@
             <span>京东扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
         </div>
+        <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="10">
+            <img src="/images/jd.png" style="width: 20px;">
+            <span>京东WAP</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
+        </div>
        <div class="boxflex1 paystyle checkImg1"  data-type="5">
             <img src="/images/pay.png" style="width: 20px;">
             <span>银联扫码</span>
@@ -275,7 +280,7 @@ $(function() {
 
         var val = $(this).html();
         var type = $('#type').val();
-        if( parseFloat(val) > 3000 && ( type == 4 || type == 5 ) ){
+        if( parseFloat(val) > 3000 && ( type == 4 || type == 5 || type == 10) ){
             //$(".qqsaoma").trigger("click");
             $.alert("京东和银联单笔数额不得大于3000元" , function(){
                 //$(".qqsaoma").trigger("click");
@@ -317,7 +322,7 @@ $(function() {
         $('#amount').val(amount);
 
         var type = $('#type').val();
-        if( parseFloat(amount) > 3000 && ( type == 4 || type == 5 ) ){
+        if( parseFloat(amount) > 3000 && ( type == 4 || type == 5 || type == 10) ){
             //$(".qqsaoma").trigger("click");
             $.alert("京东和银联单笔数额不得大于3000元" , function(){
                 //$(".qqsaoma").trigger("click");
@@ -335,7 +340,7 @@ $(function() {
             return false;
         }
         var type = $('#type').val();
-        if( parseFloat(amount) > 3000 && ( type == 4 || type == 5 ) ){
+        if( parseFloat(amount) > 3000 && ( type == 4 || type == 5 || type == 10 ) ){
             //$(".qqsaoma").trigger("click");
             $.alert("京东和银联单笔数额不得大于3000元" , function(){
                 //$(".qqsaoma").trigger("click");
@@ -350,7 +355,7 @@ $(function() {
     $('.payType .paystyle').on('click', function(){
         var type = $(this).data('type');
         var amount =  $('#amount').val();
-        if( parseFloat(amount) > 3000 && ( type == 4 || type == 5 )){
+        if( parseFloat(amount) > 3000 && ( type == 4 || type == 5 || type == 10 )){
             $.alert("京东和银联单笔数额不得大于3000元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
