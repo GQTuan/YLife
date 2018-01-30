@@ -298,6 +298,14 @@ $(function() {
             });
         }
 
+        if( parseFloat(val) > 1000 && ( type == 11 || type == 12) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("此通道单笔数额不得大于1000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+            });
+        }
+
         var val = $(this).html();
         var rate = <?= $rate ?>;    //后台给定
         $(".real_count").html(val - Math.ceil( val * rate ));
@@ -340,6 +348,14 @@ $(function() {
             });
         }
 
+        if( parseFloat(amount) > 1000 && ( type == 11 || type == 12) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("此通道单笔数额不得大于1000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+            });
+        }
+
         $(".real_count").html(val - Math.ceil( val * rate ));
     });
 
@@ -359,6 +375,15 @@ $(function() {
             });
             return false;
         }
+        if( parseFloat(amount) > 1000 && ( type == 11 || type == 12) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("此通道单笔数额不得大于1000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+                return false;
+            });
+            return false;
+        }
         $("#payform").submit();
     });
 
@@ -367,6 +392,13 @@ $(function() {
         var amount =  $('#amount').val();
         if( parseFloat(amount) > 3000 && ( type == 4 || type == 5 || type == 10 )){
             $.alert("京东和银联单笔数额不得大于3000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+            });
+        }
+        if( parseFloat(amount) > 1000 && ( type == 11 || type == 12) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("此通道单笔数额不得大于1000元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
             });
