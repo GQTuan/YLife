@@ -454,7 +454,7 @@ class UserController extends \frontend\components\Controller
             // 点云支付
             $html = UserCharge::payDianyunPay($amount, $type);
             return $this->render('gzh', compact('html'));
-        }else{
+        }else if(in_array($type, [3, 4, 5, 6, 7, 9])){
             // SCEN支付
             $src = UserCharge::payEasyPay($amount, $type);
             if(in_array($type, [3, 4, 5])){

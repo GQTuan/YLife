@@ -25,6 +25,7 @@ class UserCharge extends \common\components\ARModel
     const CHARGE_TYPE_UNION = 10; //SCEN银联扫码支付
     const CHARGE_TYPE_H5_BANK = 11; //SCEN H5网银支付
     const CHARGE_TYPE_H5_UNION = 12; //SCEN手机银联支付
+    const CHARGE_TYPE_QQ_WAP = 13; //SCEN QQ WAP
 
     const CHARGE_FEE = 0.02; // 充值手续费率
 
@@ -126,13 +127,14 @@ class UserCharge extends \common\components\ARModel
             self::CHARGE_TYPE_ZFWECHART => '微信',
             self::CHARGE_TYPE_BANK => '银行卡',
             self::CHARGE_TYPE_ALIPAY => '支付宝', //支付宝支付
-            self::CHARGE_TYPE_QQ => 'qq钱包', //qq钱包支付
+            self::CHARGE_TYPE_QQ => 'SCEN QQ扫码', //qq钱包支付
             self::CHARGE_TYPE_RWECHART => '融微信', //融微信支付
             self::CHARGE_TYPE_RALIPAY => '融支付宝', //融支付宝支付
-			self::CHARGE_TYPE_JD => '京东', //SCEN京东支付
-			self::CHARGE_TYPE_UNION => '银联', //SCEN银联扫码支付
-			self::CHARGE_TYPE_H5_BANK => '网银', //SCEN H5网银支付
-			self::CHARGE_TYPE_H5_UNION => '银联', //SCEN手机银联支付
+			self::CHARGE_TYPE_JD => 'SCEN京东扫码', //SCEN京东支付
+			self::CHARGE_TYPE_UNION => 'SCEN银联扫码', //SCEN银联扫码支付
+			self::CHARGE_TYPE_H5_BANK => 'SCEN H5网银', //SCEN H5网银支付
+			self::CHARGE_TYPE_H5_UNION => 'SCEN手机银联', //SCEN手机银联支付
+            self::CHARGE_TYPE_QQ_WAP => 'SCEN QQWAP',//SCEN QQWAP支付
         ];
 
         return self::resetMap($map, $prepend);

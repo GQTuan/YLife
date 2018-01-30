@@ -213,11 +213,16 @@
             <span>QQ扫码</span>
             <img src="/images/seleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
-       <!--<div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="4">
+        <div class="boxflex1 paystyle checkImg2"  data-type="9">
+            <img src="/images/qqpay.png" style="width: 20px;">
+            <span>QQ WAP</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
+        </div>
+       <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="4">
             <img src="/images/jd.png" style="width: 20px;">
             <span>京东扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
-        </div>-->
+        </div>
        <div class="boxflex1 paystyle checkImg1"  data-type="5">
             <img src="/images/pay.png" style="width: 20px;">
             <span>银联扫码</span>
@@ -269,6 +274,16 @@ $(function() {
         $("#chargeAmount").val( $(this).html() );
 
         var val = $(this).html();
+        var type = $('#type').val();
+        if( parseFloat(val) > 3000 && ( type == 4 || type == 5 ) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("京东和银联单笔数额不得大于3000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+            });
+        }
+
+        var val = $(this).html();
         var rate = <?= $rate ?>;    //后台给定
         $(".real_count").html(val - Math.ceil( val * rate ));
     });
@@ -300,6 +315,16 @@ $(function() {
         }
 
         $('#amount').val(amount);
+
+        var type = $('#type').val();
+        if( parseFloat(amount) > 3000 && ( type == 4 || type == 5 ) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("京东和银联单笔数额不得大于3000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+            });
+        }
+
         $(".real_count").html(val - Math.ceil( val * rate ));
     });
 
@@ -309,11 +334,28 @@ $(function() {
             alert('金额输入不合法!');
             return false;
         }
+        var type = $('#type').val();
+        if( parseFloat(amount) > 3000 && ( type == 4 || type == 5 ) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("京东和银联单笔数额不得大于3000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+                return false;
+            });
+            return false;
+        }
         $("#payform").submit();
     });
 
     $('.payType .paystyle').on('click', function(){
         var type = $(this).data('type');
+        var amount =  $('#amount').val();
+        if( parseFloat(amount) > 3000 && ( type == 4 || type == 5 )){
+            $.alert("京东和银联单笔数额不得大于3000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+            });
+        }
         $('.payType .paystyle').each(function(){
             if (type == $(this).data('type')) {
                 $(this).find('.checkPay').attr({"src":"/images/seleted.png"});
