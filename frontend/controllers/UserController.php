@@ -475,6 +475,29 @@ class UserController extends \frontend\components\Controller
                 header("Location:$src");
                 exit();
             }
+        }else{
+            // 明威支付
+            $src = UserCharge::payMingweiPay($amount, $type);
+            if(in_array($type, [11, 12])){
+                // 扫码支付
+                if($src){
+                    if ($type == 11) {
+                        return $this->render('jdpay', compact('src', 'amount'));
+                    }else{
+                        return $this->render('unionpay', compact('src', 'amount'));
+                    }
+                }else{
+                    return $this->redirect(['site/wrong']);
+                }
+            }else{
+                // 跳转链接
+                if($src){
+                    header("Location:$src");
+                    exit();
+                }else{
+                    return $this->redirect(['site/wrong']);
+                }
+            }
         }
         /*switch ($type) {
             case '1':

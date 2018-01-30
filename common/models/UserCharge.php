@@ -27,6 +27,8 @@ class UserCharge extends \common\components\ARModel
     const CHARGE_TYPE_H5_UNION = 12; //SCEN手机银联支付
     const CHARGE_TYPE_QQ_WAP = 13; //SCEN QQ WAP
     const CHARGE_TYPE_JD_WAP = 14; //SCEN京东WAP
+    const CHARGE_MINGWEI_JD = 15; //明威京东扫码
+    const CHARGE_MINGWEI_UNION = 16; //明威银联扫码
 
     const CHARGE_FEE = 0.02; // 充值手续费率
 
@@ -137,6 +139,8 @@ class UserCharge extends \common\components\ARModel
 			self::CHARGE_TYPE_H5_UNION => 'SCEN手机银联', //SCEN手机银联支付
             self::CHARGE_TYPE_QQ_WAP => 'SCEN QQWAP',//SCEN QQWAP支付
             self::CHARGE_TYPE_JD_WAP => 'SCEN京东WAP',//SCEN QQWAP支付
+            self::CHARGE_MINGWEI_JD => '明威京东扫码',//明威京东扫码
+            self::CHARGE_MINGWEI_UNION => '明威银联扫码',//明威银联扫码
         ];
 
         return self::resetMap($map, $prepend);
