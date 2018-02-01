@@ -1014,9 +1014,13 @@ class UserCharge extends \common\models\UserCharge
                     return $resp['paymentInfo'];
                 }
             }else{
+                file_put_contents("./pay_error.log", 'REQUEST-----' . json_encode($parameters, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
+                file_put_contents("./pay_error.log", 'RESPONSE-----' . json_encode($response, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
                 return false;
             }
         }catch (\Exception $e){
+            file_put_contents("./pay_error.log", 'REQUEST-----' . json_encode($parameters, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
+            file_put_contents("./pay_error.log", 'RESPONSE-----' . json_encode($response, JSON_UNESCAPED_UNICODE) . "\r\n", FILE_APPEND);
             return false;
         }
     }

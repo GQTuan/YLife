@@ -58,6 +58,8 @@ $(function () {
             success: function (msg) {
                 if (msg.state) {
                     $.alert(msg.info || '操作成功', function () {
+                        window.location.reload();
+                        /*
                         $(".restTime").each(function () {
                             var sec = parseInt($(this).val());
                             if (sec > 0) {
@@ -72,6 +74,7 @@ $(function () {
                                 count($(this).parent().next(), sec);
                             }
                         });
+                        */
                     });
                 } else {
                     $.alert(msg.info);
