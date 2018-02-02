@@ -298,9 +298,9 @@ $(function() {
             });
         }
 
-        if( parseFloat(val) > 1000 && ( type == 11 || type == 12) ){
+        if( parseFloat(val) > 998 && ( type == 11 || type == 12) ){
             //$(".qqsaoma").trigger("click");
-            $.alert("此通道单笔数额不得大于1000元" , function(){
+            $.alert("此通道单笔数额不得大于998元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
             });
@@ -348,9 +348,9 @@ $(function() {
             });
         }
 
-        if( parseFloat(amount) > 1000 && ( type == 11 || type == 12) ){
+        if( parseFloat(amount) > 998 && ( type == 11 || type == 12) ){
             //$(".qqsaoma").trigger("click");
-            $.alert("此通道单笔数额不得大于1000元" , function(){
+            $.alert("此通道单笔数额不得大于998元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
             });
@@ -375,9 +375,9 @@ $(function() {
             });
             return false;
         }
-        if( parseFloat(amount) > 1000 && ( type == 11 || type == 12) ){
+        if( parseFloat(amount) > 998 && ( type == 11 || type == 12) ){
             //$(".qqsaoma").trigger("click");
-            $.alert("此通道单笔数额不得大于1000元" , function(){
+            $.alert("此通道单笔数额不得大于998元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
                 return false;
@@ -396,9 +396,9 @@ $(function() {
                 $(".btn_money").eq(0).trigger("click");
             });
         }
-        if( parseFloat(amount) > 1000 && ( type == 11 || type == 12) ){
+        if( parseFloat(amount) > 998 && ( type == 11 || type == 12) ){
             //$(".qqsaoma").trigger("click");
-            $.alert("此通道单笔数额不得大于1000元" , function(){
+            $.alert("此通道单笔数额不得大于998元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
             });
