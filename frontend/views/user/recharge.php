@@ -189,7 +189,7 @@
             </div>
         </div>
         <input type="hidden" id="amount" name="amount" value="68">
-        <input type="hidden" id="type" name="type" value="3">
+        <input type="hidden" id="type" name="type" value="11">
     </div>
     <p class="real_count_con">实际到账：<span class="real_count"></span></p>
     <div class="boxflex1">
@@ -208,6 +208,7 @@
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
 		-->
+		<!--
        <div class="boxflex1 paystyle checkImg2"  data-type="3">
             <img src="/images/qqpay.png" style="width: 20px;">
             <span>QQ扫码</span>
@@ -233,6 +234,7 @@
             <span>银联扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>
+		-->
        <!--<div class="boxflex1 paystyle checkImg1"  data-type="6">
             <img src="/images/pay.png" style="width: 20px;">
             <span>H5网银支付</span>
@@ -246,7 +248,7 @@
         <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="11">
             <img src="/images/jd.png" style="width: 20px;">
             <span>京东扫码</span>
-            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
+            <img src="/images/seleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
         </div>
         <div class="boxflex1 paystyle checkImg1"  data-type="12">
             <img src="/images/pay.png" style="width: 20px;">
@@ -281,7 +283,7 @@ $(function() {
 
 
 
-    $('#type').val(3);
+    $('#type').val(11);
     $(".btn_money").click(function() {
         $(".on").removeClass("on");
         $(this).addClass("on");
