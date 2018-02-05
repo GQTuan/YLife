@@ -189,7 +189,7 @@
             </div>
         </div>
         <input type="hidden" id="amount" name="amount" value="68">
-        <input type="hidden" id="type" name="type" value="11">
+        <!--<input type="hidden" id="type" name="type" value="11">-->
     </div>
     <p class="real_count_con">实际到账：<span class="real_count"></span></p>
     <div class="boxflex1">
@@ -245,7 +245,7 @@
             <span>手机银联快捷</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>-->
-        <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="11">
+        <!--<div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="11">
             <img src="/images/jd.png" style="width: 20px;">
             <span>京东扫码</span>
             <img src="/images/seleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
@@ -254,9 +254,9 @@
             <img src="/images/pay.png" style="width: 20px;">
             <span>银联扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
-        </div>
+        </div>-->
     </div>
-    <div class="recharge-btn" id="payBtn">立即充值</div>
+    <!--<div class="recharge-btn" id="payBtn">立即充值</div>-->
 
 
     <p class="recharge-run">充值规则：每笔收取2%手续费</p>
@@ -283,7 +283,7 @@ $(function() {
 
 
 
-    $('#type').val(11);
+    //$('#type').val(11);
     $(".btn_money").click(function() {
         $(".on").removeClass("on");
         $(this).addClass("on");
