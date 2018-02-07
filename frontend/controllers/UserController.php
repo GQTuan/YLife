@@ -107,7 +107,7 @@ class UserController extends \frontend\components\Controller
             if ($user->blocked_account < 0 || $user->account < 0) {
                 return error('您的账号异常请联系管理员！');
             }
-            if(date('w') == 0 || date('w') == 6 || date('G') < 9 || date('G') > 17) {
+            if(date('w') == 0 || date('w') == 6 || date('G') < 9 || date('G') > 16) {
                 return error('不在规定提现时间内');
             }
             //if ($user->state == User::STATE_INVALID) {
