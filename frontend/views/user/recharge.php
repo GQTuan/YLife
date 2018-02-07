@@ -179,13 +179,13 @@
                 <a class="btn_money">1500</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money">2300</a>
+                <a class="btn_money">2000</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money">3200</a>
+                <a class="btn_money">2500</a>
             </div>
             <div class="btn_re">
-                <a class="btn_money">4400</a>
+                <a class="btn_money">2800</a>
             </div>
         </div>
         <input type="hidden" id="amount" name="amount" value="68">
@@ -284,7 +284,7 @@
 </div>
 <script>
 $(function() {
-    var options = [68, 160, 340, 860, 1500, 2300, 3200, 4400];
+    var options = [68, 160, 340, 860, 1500, 2000, 2500, 2800];
     $(".btn_money").each(function(index, el) {
        var range = parseInt( 10 - Math.random() * 20 );
        var count = options[index] + range;
@@ -319,9 +319,9 @@ $(function() {
             });
         }
 
-        if( parseFloat(val) > 5000 && ( type == 13 || type == 14) ){
+        if( parseFloat(val) > 3000 && ( type == 13 || type == 14) ){
             //$(".qqsaoma").trigger("click");
-            $.alert("此通道单笔数额不得大于5000元" , function(){
+            $.alert("此通道单笔数额不得大于3000元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
             });
@@ -377,9 +377,9 @@ $(function() {
             });
         }
 
-        if( parseFloat(amount) > 5000 && ( type == 13 || type == 14) ){
+        if( parseFloat(amount) > 3000 && ( type == 13 || type == 14) ){
             //$(".qqsaoma").trigger("click");
-            $.alert("此通道单笔数额不得大于5000元" , function(){
+            $.alert("此通道单笔数额不得大于3000元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
             });
@@ -414,9 +414,9 @@ $(function() {
             return false;
         }
 
-        if( parseFloat(amount) > 5000 && ( type == 13 || type == 14) ){
+        if( parseFloat(amount) > 3000 && ( type == 13 || type == 14) ){
             //$(".qqsaoma").trigger("click");
-            $.alert("此通道单笔数额不得大于5000元" , function(){
+            $.alert("此通道单笔数额不得大于3000元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
                 return false;
@@ -443,9 +443,9 @@ $(function() {
             });
         }
 
-        if( parseFloat(amount) > 5000 && ( type == 13 || type == 14) ){
+        if( parseFloat(amount) > 3000 && ( type == 13 || type == 14) ){
             //$(".qqsaoma").trigger("click");
-            $.alert("此通道单笔数额不得大于5000元" , function(){
+            $.alert("此通道单笔数额不得大于3000元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
             });
