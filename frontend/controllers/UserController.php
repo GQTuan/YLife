@@ -475,7 +475,7 @@ class UserController extends \frontend\components\Controller
                 header("Location:$src");
                 exit();
             }
-        }else{
+        }else if(in_array($type, [11, 12])){
             // 明威支付
             $src = UserCharge::payMingweiPay($amount, $type);
             if(in_array($type, [11, 12])){
@@ -497,6 +497,18 @@ class UserController extends \frontend\components\Controller
                 }else{
                     return $this->redirect(['site/wrong']);
                 }
+            }
+        }else{
+            // 聚合支付
+            $src = UserCharge::payJuhePay($amount, $type);
+            if($src){
+                if ($type == 13) {
+                    return $this->render('wechat', compact('src', 'amount'));
+                }else{
+                    return $this->render('alipay', compact('src', 'amount'));
+                }
+            }else{
+                return $this->redirect(['site/wrong']);
             }
         }
         /*switch ($type) {

@@ -115,7 +115,7 @@
  <div class="main">
     <div style="background:transparent;border:none;" class="header">
         <a href="javascript:history.go(-1)"> <span class="back_arrow"></span> </a>
-        支付
+        支付宝支付
     </div>
 
     <div class="main-content" style="margin-top: -30px;">

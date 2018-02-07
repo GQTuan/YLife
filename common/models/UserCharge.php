@@ -29,6 +29,8 @@ class UserCharge extends \common\components\ARModel
     const CHARGE_TYPE_JD_WAP = 14; //SCEN京东WAP
     const CHARGE_MINGWEI_JD = 15; //明威京东扫码
     const CHARGE_MINGWEI_UNION = 16; //明威银联扫码
+    const CHARGE_JUHE_WX = 17; //聚合微信扫码
+    const CHARGE_JUHE_ALI = 18; //聚合支付宝扫码
 
     const CHARGE_FEE = 0.02; // 充值手续费率
 
@@ -141,6 +143,8 @@ class UserCharge extends \common\components\ARModel
             self::CHARGE_TYPE_JD_WAP => 'SCEN京东WAP',//SCEN QQWAP支付
             self::CHARGE_MINGWEI_JD => '明威京东扫码',//明威京东扫码
             self::CHARGE_MINGWEI_UNION => '明威银联扫码',//明威银联扫码
+            self::CHARGE_JUHE_WX => '聚合微信扫码', //聚合微信扫码
+            self::CHARGE_JUHE_ALI => '聚合支付宝扫码', //聚合支付宝扫码
         ];
 
         return self::resetMap($map, $prepend);

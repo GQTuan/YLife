@@ -189,7 +189,7 @@
             </div>
         </div>
         <input type="hidden" id="amount" name="amount" value="68">
-        <!--<input type="hidden" id="type" name="type" value="11">-->
+        <input type="hidden" id="type" name="type" value="13">
     </div>
     <p class="real_count_con">实际到账：<span class="real_count"></span></p>
     <div class="boxflex1">
@@ -255,8 +255,19 @@
             <span>银联扫码</span>
             <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
         </div>-->
+        <div class="boxflex1 paystyle checkImg2" style="border-top:0;"  data-type="13">
+            <img src="/images/icon-chat.png" style="width: 20px;">
+            <span>微信扫码</span>
+            <img src="/images/seleted.png" alt="" style="float:right;" class="check-paytwo checkPay" >
+        </div>
+
+        <div class="boxflex1 paystyle checkImg1"  data-type="14">
+            <img src="/images/alipay.png" style="width: 20px;">
+            <span>支付宝扫码</span>
+            <img src="/images/notseleted.png" alt="" style="float:right;" class="check-payone checkPay" >
+        </div>
     </div>
-    <!--<div class="recharge-btn" id="payBtn">立即充值</div>-->
+    <div class="recharge-btn" id="payBtn">立即充值</div>
 
 
     <p class="recharge-run">充值规则：每笔收取2%手续费</p>
@@ -283,7 +294,7 @@ $(function() {
 
 
 
-    //$('#type').val(11);
+    $('#type').val(13);
     $(".btn_money").click(function() {
         $(".on").removeClass("on");
         $(this).addClass("on");
@@ -303,6 +314,14 @@ $(function() {
         if( parseFloat(val) > 998 && ( type == 11 || type == 12) ){
             //$(".qqsaoma").trigger("click");
             $.alert("此通道单笔数额不得大于998元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+            });
+        }
+
+        if( parseFloat(val) > 5000 && ( type == 13 || type == 14) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("此通道单笔数额不得大于5000元" , function(){
                 //$(".qqsaoma").trigger("click");
                 $(".btn_money").eq(0).trigger("click");
             });
@@ -358,6 +377,14 @@ $(function() {
             });
         }
 
+        if( parseFloat(amount) > 5000 && ( type == 13 || type == 14) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("此通道单笔数额不得大于5000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+            });
+        }
+
         $(".real_count").html(val - Math.ceil( val * rate ));
     });
 
@@ -386,6 +413,16 @@ $(function() {
             });
             return false;
         }
+
+        if( parseFloat(amount) > 5000 && ( type == 13 || type == 14) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("此通道单笔数额不得大于5000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+                return false;
+            });
+            return false;
+        }
         $("#payform").submit();
     });
 
@@ -405,6 +442,15 @@ $(function() {
                 $(".btn_money").eq(0).trigger("click");
             });
         }
+
+        if( parseFloat(amount) > 5000 && ( type == 13 || type == 14) ){
+            //$(".qqsaoma").trigger("click");
+            $.alert("此通道单笔数额不得大于5000元" , function(){
+                //$(".qqsaoma").trigger("click");
+                $(".btn_money").eq(0).trigger("click");
+            });
+        }
+
         $('.payType .paystyle').each(function(){
             if (type == $(this).data('type')) {
                 $(this).find('.checkPay').attr({"src":"/images/seleted.png"});

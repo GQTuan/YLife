@@ -123,7 +123,7 @@
 
 <div class="header">
     <a href="javascript:history.go(-1)"> <span class="back_arrow"></span> </a>
-    经纪人
+    微信支付
 </div>
 
 <div class="order">

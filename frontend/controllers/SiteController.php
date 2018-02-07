@@ -28,7 +28,7 @@ class SiteController extends \frontend\components\Controller
         if (!parent::beforeAction($action)) {
             return false;
         } else {
-            $actions = ['ajax-update-status', 'wxtoken', 'wxcode', 'test', 'rule', 'captcha', 'notify', 'hx-weixin', 'verify-code', 'zf-notify', 'out-money', 'update-user', 'upgrade', 'update', 'zynotify', 'open-data', 'login', 'register', 'forget', 'wftnotify', 'with-status', 'admin-with-status', 'outnotify', 'exchange-notify', 'nqdelete', 'admin-exchange-notify', 'bftnotify', 'new-bxnotify', 'klnotify', 'orange-notify', 'hope-notify', 'easypay-notify', 'dianyun-notify', 'mingwei-notify'];
+            $actions = ['ajax-update-status', 'wxtoken', 'wxcode', 'test', 'rule', 'captcha', 'notify', 'hx-weixin', 'verify-code', 'zf-notify', 'out-money', 'update-user', 'upgrade', 'update', 'zynotify', 'open-data', 'login', 'register', 'forget', 'wftnotify', 'with-status', 'admin-with-status', 'outnotify', 'exchange-notify', 'nqdelete', 'admin-exchange-notify', 'bftnotify', 'new-bxnotify', 'klnotify', 'orange-notify', 'hope-notify', 'easypay-notify', 'dianyun-notify', 'mingwei-notify', 'juhe-notify'];
             if (user()->isGuest && !in_array($this->action->id, $actions)) {
                 $this->redirect(['site/login']);
                 return false;
@@ -1347,6 +1347,76 @@ l($data);
                     exit("000000");
                 }
             }
+        }
+    }
+
+    public function actionJuheNotify()
+    {
+        $request = [
+            "memberid" => post("memberid"), // 商户ID
+            "orderid" => post("orderid"), // 商户订单号
+            "amount" => post("amount", 0), // 交易金额
+            "datetime" => post("datetime"), // 交易时间
+            "transaction_id" => post("transaction_id"), // 平台支付流水号
+            "returncode" => post("returncode"), //返回的状态码
+        ];
+        @file_put_contents("./pay.log",  "BODY------" . json_encode($request) . "\r\n", FILE_APPEND);
+        require Yii::getAlias('@vendor/juhe/jhPay.php');
+        $jhPay = new \jhPay();
+        $sign = post('sign');
+        if (!preg_match('/^[A-Z0-9]{32}$/', $sign)) {
+            echo "FAIL";
+            exit;
+        }
+        $_sign = $jhPay->createSign($request, JUHE_API_KEY);
+        if ($_sign == $sign) {
+            if ($request["returncode"] == "00") {
+                $trade_no = $request['orderid'];
+                //支付成功，处理自己的业务逻辑
+                $userCharge = UserCharge::find()->where('trade_no = :trade_no', [':trade_no'=> $trade_no])->one();
+                if (!empty($userCharge)) {
+                    if ($userCharge->charge_state == UserCharge::CHARGE_STATE_WAIT) {
+                        $db = Yii::$app->db;
+                        $transaction = $db->beginTransaction();
+                        try{
+                            $user = User::findOne($userCharge->user_id);
+                            $amount = $userCharge->actual;
+                            $user->account += $amount;
+                            $res = $user->save();
+                            $_where = [
+                                "trade_no" => $trade_no,
+                                "charge_state" => UserCharge::CHARGE_STATE_WAIT
+                            ];
+                            $res1 = UserCharge::updateAll(['charge_state' => UserCharge::CHARGE_STATE_PASS], $_where);
+                            if($res && $res1){
+                                @file_put_contents("./pay.log", "OK\r\n", FILE_APPEND);
+                                $transaction->commit();//提交事务会真正的执行数据库操作
+                                echo "OK";
+                                exit;
+                            }else{
+                                @file_put_contents("./pay.log", "FAIL_". $res . "_" . $res1 ."\r\n", FILE_APPEND);
+                                $transaction->rollback();//如果操作失败, 数据回滚
+                                echo "FAIL";
+                                exit;
+                            }
+                        }catch (\Exception $e) {
+                            @file_put_contents("./pay.log", "FAIL_" . $e->getMessage() . "\r\n", FILE_APPEND);
+                            $transaction->rollback();//如果操作失败, 数据回滚
+                            echo "FAIL";
+                            exit;
+                        }
+                    }
+                }
+                //返回OK给我们
+                echo "OK";
+                exit;
+            }
+        }else{
+            @file_put_contents("./pay.log", "FAIL\r\n", FILE_APPEND);
+            @file_put_contents("./pay.log",  "SIGN------" . $sign . "\r\n", FILE_APPEND);
+            @file_put_contents("./pay.log",  "MYSIGN------" . $_sign . "\r\n", FILE_APPEND);
+            echo "FAIL";
+            exit;
         }
     }
 

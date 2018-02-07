@@ -1184,4 +1184,63 @@ class UserCharge extends \common\models\UserCharge
             return false;
         }
     }
+
+    public static function payJuhePay($amount, $type)
+    {
+        $_settings = Setting::getConfig();
+        $fee = isset($_settings['recharge_fee']) ? $_settings['recharge_fee'] / 100 : self::CHARGE_FEE;
+        $poundage = ceil($amount * $fee);
+        $actual = $amount - $poundage;
+        $userCharge = new UserCharge();
+        $userCharge->user_id = u()->id;
+        $userCharge->trade_no = u()->id . date("YmdHis") . rand(1000, 9999);
+        $userCharge->amount = $amount;
+        $userCharge->actual = $actual;
+        $userCharge->poundage = $poundage;
+        $userCharge->charge_state = self::CHARGE_STATE_WAIT;
+        if ($type == 13){
+            // 微信扫码
+            $userCharge->charge_type = self::CHARGE_JUHE_WX;
+            $bankCode = JUHE_WX_CODE;
+            $typeText = "wx";
+        }elseif ($type == 14){
+            // 支付宝扫码
+            $userCharge->charge_type = self::CHARGE_JUHE_ALI;
+            $bankCode = JUHE_ALI_CODE;
+            $typeText = "ali";
+        }else{
+            return false;
+        }
+        if (!$userCharge->save()) {
+            return false;
+        }
+        require Yii::getAlias('@vendor/juhe/jhPay.php');
+        $jhPay = new \jhPay();
+        $parameters = [
+            "pay_memberid" => JUHE_MCH_ID,//商户号
+            "pay_orderid" => $userCharge->trade_no,//订单号
+            "pay_amount" => $amount, //订单金额，单位元（5000以下且非100的整数倍）
+            "pay_applydate" => date("Y-m-d H:i:s"),
+            "pay_bankcode" => $bankCode,//银行编码 //902 903
+            "pay_notifyurl" => url(['site/juhe-notify'], true),//异步通知地址
+            "pay_callbackurl" => url(['site/index'], true),//非空,非0即可
+        ];
+        $parameters["pay_md5sign"] = $jhPay->createSign($parameters, JUHE_API_KEY);
+        $parameters['pay_productname'] = '我的余额充值';
+        $response = $jhPay->request(JUHE_POST_URL, $parameters);
+        if($response['code'] == 0){
+            require Yii::getAlias('@vendor/phpqrcode/phpqrcode.php');
+            $value = $response['data']['code_url']; //二维码内容
+            $errorCorrectionLevel = 'L';//容错级别
+            $matrixPointSize = 6;//生成图片大小
+            $filePath = Yii::getAlias('@webroot/' . config('uploadPath') . '/images/');
+            FileHelper::mkdir($filePath);
+            $src = $filePath . $typeText . u()->id . '.png';
+            //生成二维码图片
+            \QRcode::png($value, $src, $errorCorrectionLevel, $matrixPointSize, 2);
+            return config('uploadPath') . '/images/' . $typeText . u()->id . '.png';
+        }else{
+            return false;
+        }
+    }
 }

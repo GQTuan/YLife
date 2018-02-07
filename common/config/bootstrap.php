@@ -60,6 +60,13 @@ const MINGWEI_MERCHANT_KEY = "7Q71UE38BH2VALU8";
 const MINGWEI_QRCODE_URL = "http://39.108.235.176/trans/gateway/tran/genQrCode";
 const MINGWEI_H5_URL = "http://39.108.235.176/trans/gateway/tran/h5Pay";
 
+//JuhePay
+const JUHE_MCH_ID = "15285"; //商户号
+const JUHE_API_KEY = "fdingpsx4cx5fe3nazr6jysc90vub78q"; //API KEY
+const JUHE_POST_URL = "https://api.qujuhe.com/pay_index"; //提交地址
+const JUHE_WX_CODE = 902; // 微信银行编码
+const JUHE_ALI_CODE = 903; // 支付宝银行编码
+
 /**
  * 路径别名定义
  */
